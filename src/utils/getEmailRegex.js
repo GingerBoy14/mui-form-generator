@@ -1,0 +1,2 @@
+const getEmailRegex = {}
+export { getEmailRegex }

@@ -1,0 +1,2 @@
+const regex = {}
+export { regex }
