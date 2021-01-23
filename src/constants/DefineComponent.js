@@ -12,19 +12,19 @@ const DEFINE_COMPONENTS = {
     type: 'text'
   },
   INPUT_EMAIL: {
-    Component: <Input />,
+    Component: Input,
     type: 'email'
   },
   INPUT_MULTILINE: {
-    Component: <Textarea />,
+    Component: Textarea,
     type: 'multiline'
   },
   INPUT_SEARCH: {
-    Component: <Input />,
+    Component: Input,
     type: 'search'
   },
   CHECKBOX: {
-    Component: <Checkbox />,
+    Component: Checkbox,
     type: 'checkbox',
     checked: false
   },
@@ -33,7 +33,7 @@ const DEFINE_COMPONENTS = {
     type: 'date'
   },
   SELECT: {
-    Component: <Select />,
+    Component: Select,
     type: 'select'
   }
 }
