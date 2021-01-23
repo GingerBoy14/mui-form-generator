@@ -1,7 +1,7 @@
 import Search from './Search.template'
 
 const metadata = {
-  title: 'components/Lib/Input',
+  title: 'components/Lib/Search',
   component: Search
 }
 export default metadata

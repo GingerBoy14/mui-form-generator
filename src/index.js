@@ -12,8 +12,14 @@ const config = [
     label: 'Email',
     name: 'email',
 
-    rules: { required: 'dima' },
-    inputProps: { fullWidth: false }
+    rules: {
+      required: 'true',
+      pattern: {
+        value: /\d/,
+        domain: 'senseteq.io',
+        message: 'Enter example@senseteq.io'
+      }
+    }
   },
   { type: 'date', label: 'Birthday', name: 'birthday' },
   { type: 'multiline', label: 'Birthday', name: 'birthday' }
@@ -28,7 +34,7 @@ const App = () => {
         <Form
           form={form}
           onSubmit={(data) => console.log('submit', data)}
-          onSubmitFail={() => console.log('fail')}
+          onSubmitFail={(error) => console.log('fail', error)}
           size={{ size: 'medium', margin: 'dense' }}>
           <FormGenerator config={config} />
         </Form>
