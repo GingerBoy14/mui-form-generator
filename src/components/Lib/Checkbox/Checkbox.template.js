@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import MUICheckbox from '@material-ui/core/Checkbox'
 
 const Checkbox = (props) => {
   return <div>Checkbox</div>
