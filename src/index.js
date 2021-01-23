@@ -15,13 +15,44 @@ const config = [
     rules: {
       required: 'true',
       pattern: {
-        value: /\d/,
+        value: 'email',
         domain: 'senseteq.io',
         message: 'Enter example@senseteq.io'
       }
     }
   },
-  { type: 'date', label: 'Birthday', name: 'birthday' },
+  {
+    type: 'date',
+    label: 'Birthday',
+    name: 'birthday'
+  },
+
+  {
+    type: 'phone',
+    label: 'Phone',
+    name: 'phone',
+    rules: {
+      required: 'true',
+      pattern: {
+        value: 'phone',
+        message: 'Enter correct number'
+      }
+    }
+  },
+  {
+    type: 'number',
+    label: 'Price',
+    name: 'price',
+    rules: {
+      required: 'true',
+
+      valueAsNumber: true,
+      min: {
+        value: 0,
+        message: 'error message' // JS only: <p>error message</p> TS only support string
+      }
+    }
+  },
   { type: 'multiline', label: 'Birthday', name: 'birthday' }
 ]
 

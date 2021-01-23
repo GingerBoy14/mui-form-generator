@@ -15,6 +15,14 @@ const DEFINE_COMPONENTS = {
     Component: Input,
     type: 'email'
   },
+  INPUT_PHONE: {
+    Component: Input,
+    type: 'phone'
+  },
+  INPUT_NUMBER: {
+    Component: Input,
+    type: 'number'
+  },
   INPUT_MULTILINE: {
     Component: Textarea,
     type: 'multiline'
