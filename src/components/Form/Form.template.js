@@ -6,7 +6,6 @@ const Form = (props) => {
 
   const handleSubmit = () => form.handleSubmit(onSubmit, onSubmitFail)
   form.submit = () => handleSubmit()()
-  console.log(rest, form)
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit} {...rest} />

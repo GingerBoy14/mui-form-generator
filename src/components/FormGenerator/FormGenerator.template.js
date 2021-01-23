@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types'
 import { useFormContext } from 'react-hook-form'
+import { DEFINE_COMPONENTS_VALUES } from '../../constants/DefineComponent'
 
 const FormGenerator = (props) => {
-  const { register, errors } = useFormContext()
+  const { config } = props
   return (
     <>
-      <input
-        type="text"
-        name="email"
-        ref={register({ required: 'required' })}
-      />
-      {errors.email && <p>{errors.email.message}</p>}
+      {config.map((formItem) => {
+        return DEFINE_COMPONENTS_VALUES.map(
+          ({ type, Component }) =>
+            type === formItem.type && <Component {...formItem} />
+        )
+      })}
     </>
   )
 }

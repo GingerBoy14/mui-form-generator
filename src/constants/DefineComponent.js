@@ -8,32 +8,32 @@ import {
 
 const DEFINE_COMPONENTS = {
   INPUT_TEXT: {
-    component: Input,
+    Component: Input,
     type: 'text'
   },
   INPUT_EMAIL: {
-    component: Input,
+    Component: <Input />,
     type: 'email'
   },
   INPUT_MULTILINE: {
-    component: Textarea,
+    Component: <Textarea />,
     type: 'multiline'
   },
   INPUT_SEARCH: {
-    component: Input,
+    Component: <Input />,
     type: 'search'
   },
   CHECKBOX: {
-    component: Checkbox,
+    Component: <Checkbox />,
     type: 'checkbox',
     checked: false
   },
   DATE: {
-    component: DatePicker,
+    Component: DatePicker,
     type: 'date'
   },
   SELECT: {
-    component: Select,
+    Component: <Select />,
     type: 'select'
   }
 }
