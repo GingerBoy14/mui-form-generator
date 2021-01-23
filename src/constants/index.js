@@ -1,2 +1,3 @@
 import { regex } from './regex.js'
-export { regex }
+import * as defineComponents from './DefineComponent'
+export { regex, defineComponents }
