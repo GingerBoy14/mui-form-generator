@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import './styles/bootstrap-grid-override.css'
 import { useForm } from 'react-hook-form'
