@@ -1,29 +1,26 @@
 import PropTypes from 'prop-types'
 import TextField from '@material-ui/core/TextField'
+import { useFormContext } from 'react-hook-form'
 
 const Input = (props) => {
+  const { name, label, rules, inputProps } = props
+  const { register, errors } = useFormContext()
   console.log(props)
   return (
     <TextField
-      name={props.name}
-      label={props.label}
-      // error={!!errors.name}
-      // helperText={errors.name ? errors.name.message : ' '}
-      // inputRef={register({
-      //   required: 'Required',
-      //   pattern: {
-      //     value: checkUnicode,
-      //     message: 'Please enter correct name'
-      //   }
-      // })}
-      size="medium"
-      margin="dense"
-      fullWidth
+      {...inputProps}
+      name={name}
+      label={label}
+      error={!!errors[name]}
+      helperText={errors[name] ? errors[name]?.message : ' '}
+      inputRef={register(rules)}
     />
   )
 }
 
-Input.propTypes = {}
+Input.propTypes = {
+  inputProps: PropTypes.object
+}
 Input.defaultProps = {}
 
 export default Input

@@ -7,8 +7,16 @@ import { Form } from './components/Form'
 import { FormGenerator } from './components/FormGenerator'
 
 const config = [
-  { type: 'text', label: 'Email', name: 'email', rules: { required: 'Maxim' } },
-  { type: 'date', label: 'Birthday', name: 'birthday' }
+  {
+    type: 'text',
+    label: 'Email',
+    name: 'email',
+
+    rules: { required: 'dima' },
+    inputProps: { fullWidth: false }
+  },
+  { type: 'date', label: 'Birthday', name: 'birthday' },
+  { type: 'multiline', label: 'Birthday', name: 'birthday' }
 ]
 
 const App = () => {
@@ -19,8 +27,9 @@ const App = () => {
       <Box className="col-12">
         <Form
           form={form}
-          onSubmit={() => console.log('submit')}
-          onSubmitFail={() => console.log('fail')}>
+          onSubmit={(data) => console.log('submit', data)}
+          onSubmitFail={() => console.log('fail')}
+          size={{ size: 'medium', margin: 'dense' }}>
           <FormGenerator config={config} />
         </Form>
       </Box>
