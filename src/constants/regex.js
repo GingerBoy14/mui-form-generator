@@ -1,5 +1,7 @@
 import XRegExp from 'xregexp'
 
+/*eslint no-useless-escape: "off"*/
+
 const NUMBER_REGEX = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
 const CHECK_UNICODE = XRegExp('^\\pL+$')
 const EMAIL_REGEX = {
