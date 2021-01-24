@@ -1,12 +1,12 @@
-import Button from './Button.template'
+import FormButtons from './FormButtons.template'
 
 const metadata = {
   title: 'components/Lib/Button',
-  component: Button
+  component: FormButtons
 }
 export default metadata
 
-const Template = (args) => <Button {...args} />
+const Template = (args) => <FormButtons {...args} />
 
 export const ButtonStory = Template.bind({})
 

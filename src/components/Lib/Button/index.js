@@ -1,1 +1,1 @@
-export { default as Button } from './Button.template'
+export { default as FormButtons } from './FormButtons.template'
