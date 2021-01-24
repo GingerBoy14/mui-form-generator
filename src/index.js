@@ -8,6 +8,7 @@ import './styles/bootstrap-grid-override.css'
 import { useForm } from 'react-hook-form'
 import { AccountBalance } from '@material-ui/icons'
 import { FormButtons } from './components/Lib/Button'
+import { DatePicker } from './components/Lib'
 
 const config = [
   {
@@ -99,7 +100,7 @@ const App = () => {
             size={{ size: 'medium', margin: 'dense' }}
             inlineFields>
             <FormGenerator config={config} />
-
+            <DatePicker />
             <FormButtons okText="accept" cancelText="cancel" />
             <button type="submit">sadfasdf</button>
           </Form>
