@@ -5,8 +5,8 @@ import { checkPattern } from '../../utils'
 import { Typography, Box } from '@material-ui/core'
 
 const FormItem = (props) => {
-  const { Component, formItemStyle, field } = props
-  const { size, inlineFieldsLabel, variant, setValue } = useFormContext()
+  const { Component, field, formItemStyle, inlineLayout } = props
+  const { setValue, formStyle } = useFormContext()
   const { label, inline, ...restField } = field
   checkPattern(field.rules)
   useEffect(() => {
@@ -16,49 +16,62 @@ const FormItem = (props) => {
   }, [])
 
   //need to override inline form style for single field
-  if (inlineFieldsLabel) {
-    field.inline = typeof inline === 'boolean' ? inline : inlineFieldsLabel
+  if (formStyle.layout === 'horizontal' || field.horizontal) {
+    field.horizontal = typeof inline === 'boolean' ? inline : true
+  } else {
+    field.horizontal = false
   }
-
   return (
     <>
-      {field.inline && field.type !== 'checkbox' ? (
-        <Box className="col-12" display="flex" alignItems="baseline">
-          {field.label && (
-            <Typography
-              component={Box}
-              pr={1}
-              className="col-1"
-              textAlign="end">
-              {field.label}:
-            </Typography>
-          )}
-
-          <Component
-            {...restField}
-            inputProps={{
-              variant,
-              ...formItemStyle,
-              ...size,
-              ...field.inputProps
-            }}
-          />
-        </Box>
+      {field.horizontal && field.type !== 'checkbox' ? (
+        <InlineFormItem {...props} />
       ) : (
-        <Box className="col-12">
+        <Box className={`${inlineLayout ? 'col' : 'col-12'}`}>
           <Component
             {...restField}
             label={label}
             inputProps={{
-              variant,
               ...formItemStyle,
-              ...size,
+              variant: formStyle.variant,
+              ...formStyle.size,
               ...field.inputProps
             }}
           />
         </Box>
       )}
     </>
+  )
+}
+
+const InlineFormItem = (props) => {
+  const { Component, field, formItemStyle, inlineLayout } = props
+  const { formStyle } = useFormContext()
+  const { label, horizontal, ...restFieldProps } = field
+  return (
+    <Box
+      className={`${inlineLayout ? 'col' : 'col-12'}`}
+      display="flex"
+      alignItems="baseline">
+      {label && (
+        <Typography
+          component={Box}
+          pr={1}
+          className={`${inlineLayout ? 'col' : 'col-1'}`}
+          textAlign="end">
+          {label}:
+        </Typography>
+      )}
+
+      <Component
+        {...restFieldProps}
+        inputProps={{
+          ...formItemStyle,
+          variant: formStyle.variant,
+          ...formStyle.size,
+          ...restFieldProps.inputProps
+        }}
+      />
+    </Box>
   )
 }
 
