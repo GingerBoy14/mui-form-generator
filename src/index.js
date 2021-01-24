@@ -8,7 +8,7 @@ import './styles/bootstrap-grid-override.css'
 import { useForm } from 'react-hook-form'
 import { AccountBalance } from '@material-ui/icons'
 import { FormButtons } from './components/Lib/Button'
-import { DatePicker } from './components/Lib'
+import { DatePicker } from './components/Lib/DatePicker'
 
 const config = [
   {

@@ -5,20 +5,17 @@ import {
 } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import Box from '@material-ui/core/Box'
-import { useForm, Controller } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 
 const DatePicker = (props) => {
   const { date, ...rest } = props
-  console.log(date.getTime())
+  console.log(date)
   const {
     formState: { errors },
     control,
     setError,
     clearErrors
-  } = useForm({
-    defaultValues: { date: date.getTime(), ...rest },
-    shouldFocusError: false
-  })
+  } = useFormContext()
   return (
     <Box className="col-12">
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -27,6 +24,7 @@ const DatePicker = (props) => {
           name="date"
           render={({ value, onChange }) => (
             <KeyboardDatePicker
+              {...rest}
               margin="dense"
               name="date"
               label="Birthday"
@@ -51,7 +49,7 @@ const DatePicker = (props) => {
                 } else {
                   clearErrors('date')
                 }
-                return data && onChange(data.getTime())
+                return data && onChange(data)
               }}
               KeyboardButtonProps={{
                 'aria-label': 'change date'
@@ -68,7 +66,7 @@ DatePicker.propTypes = {
   date: PropTypes.instanceOf(Date)
 }
 DatePicker.defaultProps = {
-  date: new Date('2001-11-21').getTime()
+  date: new Date('2001-11-21')
 }
 
 export default DatePicker
