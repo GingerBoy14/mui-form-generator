@@ -26,8 +26,7 @@ const config = [
     },
     inputProps: {
       variant: 'outlined'
-    },
-    defaultValue: 'asdfasdf'
+    }
   },
   {
     type: 'date',
@@ -100,7 +99,6 @@ const App = () => {
             size={{ size: 'medium', margin: 'dense' }}
             inlineFields>
             <FormGenerator config={config} />
-            <DatePicker />
             <FormButtons okText="accept" cancelText="cancel" />
             <button type="submit">sadfasdf</button>
           </Form>
