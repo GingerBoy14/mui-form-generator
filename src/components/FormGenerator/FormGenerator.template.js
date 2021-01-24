@@ -2,24 +2,50 @@ import PropTypes from 'prop-types'
 import { defineComponents } from '../../constants'
 import { FormItem } from '../FormItem'
 import { CustomComponent } from '../CustomComponent'
+import { useFormContext } from 'react-hook-form'
 
 const { DEFINE_COMPONENTS_VALUES } = defineComponents
 
 const FormGenerator = (props) => {
   const { config, ...rest } = props
-
+  const { watch } = useFormContext()
   return (
     <>
-      {config.map((formItem, index) => {
-        if (formItem.Component) {
-          return <CustomComponent {...formItem} key={index} />
+      {config.map((formItem) => {
+        const { showIfChecked, ...formItemRest } = formItem
+        if (formItemRest.Component) {
+          return (
+            <FormItem
+              Component={CustomComponent}
+              field={formItemRest}
+              {...rest}
+              key={formItem.type}
+            />
+          )
+        }
+        if (showIfChecked) {
+          const input = watch(showIfChecked)
+          return (
+            input &&
+            DEFINE_COMPONENTS_VALUES.map(
+              ({ type, Component }) =>
+                type === formItem.type && (
+                  <FormItem
+                    Component={Component}
+                    field={formItemRest}
+                    {...rest}
+                    key={type}
+                  />
+                )
+            )
+          )
         }
         return DEFINE_COMPONENTS_VALUES.map(
           ({ type, Component }) =>
             type === formItem.type && (
               <FormItem
                 Component={Component}
-                field={formItem}
+                field={formItemRest}
                 {...rest}
                 key={type}
               />
@@ -50,7 +76,13 @@ FormGenerator.propTypes = {
       name: PropTypes.string.isRequired,
       label: PropTypes.string,
       placeholder: PropTypes.string,
-      type: PropTypes.oneOf(DEFINE_COMPONENTS_VALUES.map(({ type }) => type))
+      inline: PropTypes.bool,
+      Component: PropTypes.elementType,
+      Icon: PropTypes.elementType,
+      type: PropTypes.oneOf(DEFINE_COMPONENTS_VALUES.map(({ type }) => type)),
+      inputProps: PropTypes.object,
+      defaultValue: PropTypes.any,
+      showIfChecked: PropTypes.string
     })
   )
 }

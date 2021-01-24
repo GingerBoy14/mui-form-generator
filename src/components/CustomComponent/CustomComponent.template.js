@@ -1,21 +1,19 @@
 import PropTypes from 'prop-types'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Box } from '@material-ui/core'
 
 const CustomComponent = (props) => {
-  const { Component, name, defaultValue } = props
-  const { control, inlineFields } = useFormContext()
+  const { Component, name, defaultValue, rules, ...rest } = props
+  const { control } = useFormContext()
   return (
-    <Box className={`${inlineFields ? 'col-12' : 'col'}`}>
-      <Controller
-        control={control}
-        name={name}
-        defaultValue={defaultValue}
-        render={(values, validation) => (
-          <Component {...validation} {...values} />
-        )}
-      />
-    </Box>
+    <Controller
+      control={control}
+      name={name}
+      defaultValue={defaultValue}
+      rules={rules}
+      render={({ onChange, value }) => (
+        <Component onChange={onChange} value={value} {...rest} />
+      )}
+    />
   )
 }
 
