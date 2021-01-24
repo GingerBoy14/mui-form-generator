@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import './styles/bootstrap-grid-override.css'
 import { useForm } from 'react-hook-form'
 import { AccountBalance } from '@material-ui/icons'
+import { FormButtons } from './components/Lib/Button'
 
 const config = [
   {
@@ -80,7 +81,6 @@ const config = [
     type: 'search',
     name: 'Find User',
     variant: 'outlined',
-
     Icon: <AccountBalance />
   }
 ]
@@ -99,9 +99,9 @@ const App = () => {
             size={{ size: 'medium', margin: 'dense' }}
             inlineFields>
             <FormGenerator config={config} />
-            <Box>
-              <button type="submit">sadfasdf</button>
-            </Box>
+
+            <FormButtons okText="accept" cancelText="cancel" />
+            <button type="submit">sadfasdf</button>
           </Form>
         </Box>
 
