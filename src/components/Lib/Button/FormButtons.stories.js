@@ -1,4 +1,5 @@
 import FormButtons from './FormButtons.template'
+import { Form } from '../../Form'
 
 const metadata = {
   title: 'components/Lib/FormButtons',

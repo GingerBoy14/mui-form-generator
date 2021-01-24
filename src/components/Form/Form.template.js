@@ -8,7 +8,8 @@ const Form = (props) => {
     onSubmit,
     onSubmitFail,
     size,
-    inlineFields,
+    variant,
+    inlineFieldsLabel,
     children,
     ...rest
   } = props
@@ -25,7 +26,8 @@ const Form = (props) => {
     <FormProvider
       {...(form || formMethods)}
       size={size}
-      inlineFields={inlineFields}>
+      inlineFieldsLabel={inlineFieldsLabel}
+      variant={variant}>
       <form onSubmit={handleSubmit} {...rest}>
         <Box className="row">{children}</Box>
       </form>
@@ -38,10 +40,14 @@ Form.propTypes = {
     size: PropTypes.oneOf(['small', 'medium']),
     margin: PropTypes.oneOf(['dense', 'none', 'normal'])
   }),
-  form: PropTypes.object
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  form: PropTypes.object,
+  onSubmit: PropTypes.func,
+  onSubmitFail: PropTypes.func
 }
 Form.defaultProps = {
-  size: { size: 'medium', margin: 'dense' }
+  size: { size: 'medium', margin: 'dense' },
+  variant: 'standard'
 }
 
 export default Form

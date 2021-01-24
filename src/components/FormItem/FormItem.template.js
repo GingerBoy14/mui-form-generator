@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useFormContext } from 'react-hook-form'
 import { checkPattern } from '../../utils'
@@ -5,26 +6,38 @@ import { Typography, Box } from '@material-ui/core'
 
 const FormItem = (props) => {
   const { Component, formItemStyle, field } = props
-  const { size, inlineFields, setValue } = useFormContext()
-  const { label, ...restField } = field
+  const { size, inlineFieldsLabel, variant, setValue } = useFormContext()
+  const { label, inline, ...restField } = field
   checkPattern(field.rules)
-  if (field.defaultValue) {
-    setValue(field.name, field.defaultValue)
+  useEffect(() => {
+    if (field.defaultValue) {
+      setValue(field.name, field.defaultValue)
+    }
+  }, [])
+
+  //need to override inline form style for single field
+  if (inlineFieldsLabel) {
+    field.inline = typeof inline === 'boolean' ? inline : inlineFieldsLabel
   }
-  console.log(field)
+
   return (
     <>
-      {inlineFields ? (
+      {field.inline && field.type !== 'checkbox' ? (
         <Box className="col-12" display="flex" alignItems="baseline">
-          {label && (
-            <Typography component={Box} pr={1}>
-              {label}:
+          {field.label && (
+            <Typography
+              component={Box}
+              pr={1}
+              className="col-1"
+              textAlign="end">
+              {field.label}:
             </Typography>
           )}
 
           <Component
             {...restField}
             inputProps={{
+              variant,
               ...formItemStyle,
               ...size,
               ...field.inputProps
@@ -32,10 +45,12 @@ const FormItem = (props) => {
           />
         </Box>
       ) : (
-        <Box className="col">
+        <Box className="col-12">
           <Component
-            {...field}
+            {...restField}
+            label={label}
             inputProps={{
+              variant,
               ...formItemStyle,
               ...size,
               ...field.inputProps
