@@ -8,6 +8,6 @@ export default metadata
 
 const Template = (args) => <FormItem {...args} />
 
-export const FormGeneratorStory = Template.bind({})
+export const FormItemStory = Template.bind({})
 
-FormGeneratorStory.args = {}
+FormItemStory.args = {}

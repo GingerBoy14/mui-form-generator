@@ -1,4 +1,5 @@
 import Select from './Select.template'
+import { Form } from '../../Form'
 
 const metadata = {
   title: 'components/Lib/Select',
@@ -6,7 +7,11 @@ const metadata = {
 }
 export default metadata
 
-const Template = (args) => <Select {...args} />
+const Template = (args) => (
+  <Form>
+    <Select {...args} />
+  </Form>
+)
 
 export const SelectStory = Template.bind({})
 
