@@ -5,6 +5,7 @@ import './styles/bootstrap-grid-override.css'
 import { useForm } from 'react-hook-form'
 import { Form } from './components/Form'
 import { FormGenerator } from './components/FormGenerator'
+import { Search } from '@material-ui/icons'
 
 const config = [
   {
@@ -53,7 +54,26 @@ const config = [
       }
     }
   },
-  { type: 'multiline', label: 'Birthday', name: 'birthday' }
+  {
+    type: 'multiline',
+    label: 'Enter your comment',
+    name: 'TextArea',
+    inputProps: {
+      rowsMax: 10,
+      fullWidth: false,
+      variant: 'filled',
+      InputProps: { shrink: true }
+    }
+  },
+  {
+    type: 'search',
+    name: 'Find User',
+    variant: 'outlined',
+    iconProps: {
+      startAdornment: true,
+      Icon: <Search />
+    }
+  }
 ]
 
 const App = () => {
