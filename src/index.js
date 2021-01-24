@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom'
+import { useState } from 'react'
 import Box from '@material-ui/core/Box'
+import { MenuItem, TextField } from '@material-ui/core'
 import { useForm } from 'react-hook-form'
 import { Form, FormGenerator } from './components'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
@@ -21,7 +23,8 @@ const config = [
     },
     inputProps: {
       variant: 'outlined'
-    }
+    },
+    defaultValue: 'asdfasdf'
   },
   {
     type: 'date',
@@ -54,7 +57,13 @@ const config = [
       }
     }
   },
-  { type: 'multiline', label: 'Birthday', name: 'birthday' }
+  {
+    type: 'select',
+    label: 'Birthday',
+    name: 'birthday',
+    defaultValue: 'user',
+    Component: RoleSingleSelect
+  }
 ]
 
 const App = () => {
@@ -82,4 +91,44 @@ const App = () => {
     </Box>
   )
 }
+
+const ROLE = {
+  ADMIN: 'admin',
+  USER: 'user',
+  OBSERVER: 'observer'
+}
+
+const ROLE_VALUES = Object.values(ROLE)
+function RoleSingleSelect(props) {
+  const { menuItemProps, onChange, value, ...rest } = props
+  const [currencySign, setCurrencySign] = useState(value)
+
+  const handleSelect = (event) => {
+    const selectedRole = event.target.value
+    setCurrencySign(selectedRole)
+    onChange && onChange(event, ROLE[selectedRole])
+  }
+
+  return (
+    <TextField
+      select
+      label="Role"
+      value={currencySign}
+      style={{ minWidth: 100, textTransform: 'capitalize' }}
+      defaultValue={currencySign}
+      onChange={handleSelect}
+      {...rest}>
+      {ROLE_VALUES.map((item) => (
+        <MenuItem
+          {...menuItemProps}
+          value={item}
+          key={item}
+          style={{ textTransform: 'capitalize' }}>
+          {item}
+        </MenuItem>
+      ))}
+    </TextField>
+  )
+}
+
 ReactDOM.render(<App />, document.getElementById('root'))

@@ -5,9 +5,12 @@ import { Typography, Box } from '@material-ui/core'
 
 const FormItem = (props) => {
   const { Component, formItemStyle, field } = props
-  const { size, inlineFields } = useFormContext()
+  const { size, inlineFields, setValue } = useFormContext()
   const { label, ...restField } = field
   checkPattern(field.rules)
+  if (field.defaultValue) {
+    setValue(field.name, field.defaultValue)
+  }
   return (
     <>
       {inlineFields ? (
