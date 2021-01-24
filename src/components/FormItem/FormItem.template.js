@@ -16,9 +16,12 @@ const FormItem = (props) => {
     <>
       {inlineFields ? (
         <Box className="col-12" display="flex" alignItems="baseline">
-          <Typography component={Box} pr={1}>
-            {label}:
-          </Typography>
+          {label && (
+            <Typography component={Box} pr={1}>
+              {label}:
+            </Typography>
+          )}
+
           <Component
             {...restField}
             inputProps={{

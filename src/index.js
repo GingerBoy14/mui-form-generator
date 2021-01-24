@@ -6,6 +6,7 @@ import { Form, FormGenerator } from './components'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import './styles/bootstrap-grid-override.css'
 import { useForm } from 'react-hook-form'
+import { AccountBalance } from '@material-ui/icons'
 
 const config = [
   {
@@ -66,7 +67,7 @@ const config = [
   },
   {
     type: 'multiline',
-    label: 'Enter your comment',
+    placeholder: 'Enter your comment',
     name: 'TextArea',
     inputProps: {
       rowsMax: 10,
@@ -79,10 +80,8 @@ const config = [
     type: 'search',
     name: 'Find User',
     variant: 'outlined',
-    iconProps: {
-      startAdornment: true,
-      Icon: <Search />
-    }
+
+    Icon: <AccountBalance />
   }
 ]
 
