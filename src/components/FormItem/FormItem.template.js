@@ -26,6 +26,7 @@ const FormItem = (props) => {
       }
     })
   }
+  console.log(field)
   return (
     <Box className="col-12">
       <Component
