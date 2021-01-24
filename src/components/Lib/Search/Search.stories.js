@@ -21,7 +21,7 @@ const metadata = {
 }
 export default metadata
 
-const Template = (args) => {}
+const Template = (args) => (
   <Form>
     <Search {...args} />
   </Form>
