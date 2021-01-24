@@ -11,7 +11,7 @@ const config = [
     type: 'text',
     label: 'Email',
     name: 'email',
-
+    placeholder: 'Enter your email',
     rules: {
       required: 'true',
       pattern: {

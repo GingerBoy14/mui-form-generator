@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
-import { DEFINE_COMPONENTS_VALUES } from '../../constants/DefineComponent'
+import { defineComponents } from '../../constants'
 import { FormItem } from '../FormItem'
+
+const { DEFINE_COMPONENTS_VALUES } = defineComponents
 
 const FormGenerator = (props) => {
   const { config, ...rest } = props
@@ -24,7 +26,30 @@ const FormGenerator = (props) => {
   )
 }
 
-FormGenerator.propTypes = {}
+FormGenerator.propTypes = {
+  config: PropTypes.arrayOf(
+    PropTypes.exact({
+      rules: PropTypes.shape({
+        required: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        pattern: PropTypes.oneOfType([
+          PropTypes.exact({
+            value: PropTypes.oneOfType([
+              PropTypes.instanceOf(RegExp),
+              PropTypes.string
+            ]),
+            domain: PropTypes.string,
+            message: PropTypes.string
+          }),
+          PropTypes.instanceOf(RegExp)
+        ])
+      }),
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string,
+      placeholder: PropTypes.string,
+      type: PropTypes.oneOf(DEFINE_COMPONENTS_VALUES.map(({ type }) => type))
+    })
+  )
+}
 FormGenerator.defaultProps = {}
 
 export default FormGenerator
