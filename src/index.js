@@ -81,7 +81,6 @@ const config = [
     type: 'search',
     name: 'Find User',
     variant: 'outlined',
-
     Icon: <AccountBalance />
   }
 ]

@@ -47,7 +47,8 @@ const FormButtons = (props) => {
                 onClick={onClickOk}
                 variant="contained"
                 color="primary"
-                {...buttonPropsOk}>
+                {...buttonPropsOk}
+                type="submit">
                 {okText}
               </MUIButton>
             </Box>
