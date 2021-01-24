@@ -16,7 +16,7 @@ const config = [
       required: 'true',
       pattern: {
         value: 'email',
-        domain: 'senseteq.io',
+        domain: { sdf: 'sdf' },
         message: 'Enter example@senseteq.io'
       }
     }

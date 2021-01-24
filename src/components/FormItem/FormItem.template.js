@@ -12,7 +12,7 @@ const FormItem = (props) => {
     REGEX_TYPE_MAP_VALUES.forEach((regex) => {
       if (regex.type === field.rules.pattern.value) {
         if (field.rules.pattern.value === 'email') {
-          if (field.rules.pattern.domain) {
+          if (typeof field.rules.pattern.domain === 'string') {
             field.rules.pattern.value = getEmailRegex(
               field.rules.pattern.domain
             )
