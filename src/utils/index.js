@@ -1,2 +1,4 @@
 import { getEmailRegex } from './getEmailRegex.js'
-export { getEmailRegex }
+import { checkPattern } from './checkPattern'
+
+export { getEmailRegex, checkPattern }

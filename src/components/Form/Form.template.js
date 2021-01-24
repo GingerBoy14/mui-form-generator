@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types'
 import { FormProvider, useForm } from 'react-hook-form'
+import Box from '@material-ui/core/Box'
 
 const Form = (props) => {
-  const { form, onSubmit, onSubmitFail, size, ...rest } = props
+  const {
+    form,
+    onSubmit,
+    onSubmitFail,
+    size,
+    inlineFields,
+    children,
+    ...rest
+  } = props
   const formMethods = useForm()
   const handleSubmit = (e) => {
     if (form) return form.handleSubmit(onSubmit, onSubmitFail)(e)
@@ -13,8 +22,13 @@ const Form = (props) => {
     form.submit = () => handleSubmit()
   }
   return (
-    <FormProvider {...(form || formMethods)} size={size}>
-      <form onSubmit={handleSubmit} {...rest} />
+    <FormProvider
+      {...(form || formMethods)}
+      size={size}
+      inlineFields={inlineFields}>
+      <form onSubmit={handleSubmit} {...rest}>
+        <Box className="row">{children}</Box>
+      </form>
     </FormProvider>
   )
 }

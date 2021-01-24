@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { defineComponents } from '../../constants'
 import { FormItem } from '../FormItem'
+import { CustomComponent } from '../CustomComponent'
 
 const { DEFINE_COMPONENTS_VALUES } = defineComponents
 
@@ -9,7 +10,10 @@ const FormGenerator = (props) => {
 
   return (
     <>
-      {config.map((formItem) => {
+      {config.map((formItem, index) => {
+        if (formItem.Component) {
+          return <CustomComponent {...formItem} key={index} />
+        }
         return DEFINE_COMPONENTS_VALUES.map(
           ({ type, Component }) =>
             type === formItem.type && (
