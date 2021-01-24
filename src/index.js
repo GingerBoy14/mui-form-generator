@@ -1,10 +1,9 @@
 import ReactDOM from 'react-dom'
 import Box from '@material-ui/core/Box'
+import { useForm } from 'react-hook-form'
+import { Form, FormGenerator } from './components'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import './styles/bootstrap-grid-override.css'
-import { useForm } from 'react-hook-form'
-import { Form } from './components/Form'
-import { FormGenerator } from './components/FormGenerator'
 
 const config = [
   {
@@ -19,6 +18,9 @@ const config = [
         domain: { sdf: 'sdf' },
         message: 'Enter example@senseteq.io'
       }
+    },
+    inputProps: {
+      variant: 'outlined'
     }
   },
   {
@@ -45,11 +47,10 @@ const config = [
     name: 'price',
     rules: {
       required: 'true',
-
       valueAsNumber: true,
       min: {
         value: 0,
-        message: 'error message' // JS only: <p>error message</p> TS only support string
+        message: 'error message'
       }
     }
   },
@@ -61,16 +62,23 @@ const App = () => {
 
   return (
     <Box className="container-fluid">
-      <Box className="col-12">
-        <Form
-          form={form}
-          onSubmit={(data) => console.log('submit', data)}
-          onSubmitFail={(error) => console.log('fail', error)}
-          size={{ size: 'medium', margin: 'dense' }}>
-          <FormGenerator config={config} />
-        </Form>
+      <Box className="row">
+        <Box className="col-12">
+          <Form
+            form={form}
+            onSubmit={(data) => console.log('submit', data)}
+            onSubmitFail={(error) => console.log('fail', error)}
+            size={{ size: 'medium', margin: 'dense' }}
+            inlineFields>
+            <FormGenerator config={config} />
+            <Box>
+              <button type="submit">sadfasdf</button>
+            </Box>
+          </Form>
+        </Box>
+
+        <button onClick={() => form.submit()}>adfad</button>
       </Box>
-      <button onClick={() => form.submit()}>adfad</button>
     </Box>
   )
 }
