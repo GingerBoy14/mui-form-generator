@@ -2,10 +2,10 @@ import ReactDOM from 'react-dom'
 import { useState } from 'react'
 import Box from '@material-ui/core/Box'
 import { MenuItem, TextField } from '@material-ui/core'
-import { useForm } from 'react-hook-form'
 import { Form, FormGenerator } from './components'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import './styles/bootstrap-grid-override.css'
+import { useForm } from 'react-hook-form'
 
 const config = [
   {
@@ -63,6 +63,26 @@ const config = [
     name: 'birthday',
     defaultValue: 'user',
     Component: RoleSingleSelect
+  },
+  {
+    type: 'multiline',
+    label: 'Enter your comment',
+    name: 'TextArea',
+    inputProps: {
+      rowsMax: 10,
+      fullWidth: false,
+      variant: 'filled',
+      InputProps: { shrink: true }
+    }
+  },
+  {
+    type: 'search',
+    name: 'Find User',
+    variant: 'outlined',
+    iconProps: {
+      startAdornment: true,
+      Icon: <Search />
+    }
   }
 ]
 

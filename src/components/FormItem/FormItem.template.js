@@ -11,6 +11,7 @@ const FormItem = (props) => {
   if (field.defaultValue) {
     setValue(field.name, field.defaultValue)
   }
+  console.log(field)
   return (
     <>
       {inlineFields ? (

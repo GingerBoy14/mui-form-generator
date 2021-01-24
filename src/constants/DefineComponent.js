@@ -3,7 +3,8 @@ import {
   Checkbox,
   DatePicker,
   Input,
-  Select
+  Select,
+  Search
 } from '../components/Lib'
 
 const DEFINE_COMPONENTS = {
@@ -28,7 +29,7 @@ const DEFINE_COMPONENTS = {
     type: 'multiline'
   },
   INPUT_SEARCH: {
-    Component: Input,
+    Component: Search,
     type: 'search'
   },
   CHECKBOX: {
