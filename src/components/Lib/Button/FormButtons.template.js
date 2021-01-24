@@ -16,6 +16,12 @@ const FormButtons = (props) => {
     buttonPropsCancel,
     buttonPropsOk
   } = props
+
+  //if u want to add styles in button u need to write
+  //buttonProps:{
+  // ...props
+  // styles
+  // }
   const { register, errors } = useFormContext()
   return (
     <>
