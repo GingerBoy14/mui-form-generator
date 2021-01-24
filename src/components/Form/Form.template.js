@@ -24,7 +24,7 @@ Form.propTypes = {
     size: PropTypes.oneOf(['small', 'medium']),
     margin: PropTypes.oneOf(['dense', 'none', 'normal'])
   }),
-  form: PropTypes.instanceOf(useForm)
+  form: PropTypes.object
 }
 Form.defaultProps = {
   size: { size: 'medium', margin: 'dense' }
