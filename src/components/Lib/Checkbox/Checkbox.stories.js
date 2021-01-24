@@ -1,4 +1,5 @@
 import Checkbox from './Checkbox.template'
+import { Form } from '../../Form'
 
 const metadata = {
   title: 'components/Lib/Checkbox',
@@ -6,7 +7,11 @@ const metadata = {
 }
 export default metadata
 
-const Template = (args) => <Checkbox {...args} />
+const Template = (args) => (
+  <Form>
+    <Checkbox {...args} />
+  </Form>
+)
 
 export const CheckboxStory = Template.bind({})
 

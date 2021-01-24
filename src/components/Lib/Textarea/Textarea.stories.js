@@ -1,4 +1,5 @@
 import Textarea from './Textarea.template'
+import { Form } from '../../Form'
 
 const metadata = {
   title: 'components/Lib/Textarea',
@@ -6,7 +7,11 @@ const metadata = {
 }
 export default metadata
 
-const Template = (args) => <Textarea {...args} />
+const Template = (args) => (
+  <Form>
+    <Textarea {...args} />
+  </Form>
+)
 
 export const TextareaStory = Template.bind({})
 

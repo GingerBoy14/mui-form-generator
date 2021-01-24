@@ -1,4 +1,5 @@
 import DatePicker from './DatePicker.template'
+import { Form } from '../../Form'
 
 const metadata = {
   title: 'components/Lib/DatePicker',
@@ -6,7 +7,11 @@ const metadata = {
 }
 export default metadata
 
-const Template = (args) => <DatePicker {...args} />
+const Template = (args) => (
+  <Form>
+    <DatePicker {...args} />
+  </Form>
+)
 
 export const DatePickerStory = Template.bind({})
 

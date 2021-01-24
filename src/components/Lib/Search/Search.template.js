@@ -56,7 +56,7 @@ const CustomIcon = (props) => {
   )
 }
 Search.propTypes = {
-  iconProps: PropTypes.object
+  iconProps: PropTypes.shape({ start: PropTypes.bool })
 }
 Search.defaultProps = {
   iconProps: {
