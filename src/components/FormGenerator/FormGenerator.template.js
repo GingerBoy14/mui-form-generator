@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types'
-import Box from '@material-ui/core/Box'
-import { useFormContext } from 'react-hook-form'
 import { DEFINE_COMPONENTS_VALUES } from '../../constants/DefineComponent'
+import { FormItem } from '../FormItem'
 
 const FormGenerator = (props) => {
-  const { size } = useFormContext()
-  const { config, formItemStyle } = props
+  const { config, ...rest } = props
 
   return (
     <>
@@ -13,16 +11,12 @@ const FormGenerator = (props) => {
         return DEFINE_COMPONENTS_VALUES.map(
           ({ type, Component }) =>
             type === formItem.type && (
-              <Box className="col-12" key={type}>
-                <Component
-                  {...formItem}
-                  inputProps={{
-                    ...formItemStyle,
-                    ...size,
-                    ...formItem.inputProps
-                  }}
-                />
-              </Box>
+              <FormItem
+                Component={Component}
+                field={formItem}
+                {...rest}
+                key={type}
+              />
             )
         )
       })}
@@ -31,10 +25,6 @@ const FormGenerator = (props) => {
 }
 
 FormGenerator.propTypes = {}
-FormGenerator.defaultProps = {
-  formItemStyle: {
-    fullWidth: true
-  }
-}
+FormGenerator.defaultProps = {}
 
 export default FormGenerator

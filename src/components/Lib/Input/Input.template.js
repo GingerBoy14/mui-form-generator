@@ -5,14 +5,13 @@ import { useFormContext } from 'react-hook-form'
 const Input = (props) => {
   const { name, label, rules, inputProps } = props
   const { register, errors } = useFormContext()
-  console.log(props)
   return (
     <TextField
       {...inputProps}
       name={name}
       label={label}
       error={!!errors[name]}
-      helperText={errors[name] ? errors[name]?.message : ' '}
+      helperText={errors[name]?.message ? errors[name].message : ' '}
       inputRef={register(rules)}
     />
   )
