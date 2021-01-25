@@ -16,19 +16,18 @@ const FormButtons = (props) => {
     buttonPropsCancel,
     buttonPropsOk
   } = props
-
+  const { formStyle } = useFormContext()
   //if u want to add styles in button u need to write
   //buttonProps:{
   // ...props
   // styles
   // }
-  const { register, errors } = useFormContext()
   return (
     <>
       {visible && (
         <Box
           display="flex"
-          className="col-12"
+          className={`${formStyle.layout === 'inline' ? 'col-auto' : 'col-12'}`}
           justifyContent="flex-end"
           {...flexLayout}>
           {visibleCancel && (
