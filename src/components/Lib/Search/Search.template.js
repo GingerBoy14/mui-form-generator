@@ -49,7 +49,7 @@ const CustomIcon = (props) => {
     <>
       {visible && (
         <InputAdornment>
-          {Icon || <IconSearch fontSize={size ? size : 'default'} />}
+          {<Icon /> || <IconSearch fontSize={size ? size : 'default'} />}
         </InputAdornment>
       )}
     </>

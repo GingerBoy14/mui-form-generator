@@ -20,13 +20,14 @@ const config = [
       required: 'true',
       pattern: {
         value: 'email',
-        domain: { sdf: 'sdf' },
         message: 'Enter example@senseteq.io'
       }
     },
     inputProps: {
       variant: 'outlined'
     }
+    defaultValue: 'examle@famil.com',
+    showIfChecked: 'reminder'
   },
   {
     type: 'date',
@@ -37,6 +38,7 @@ const config = [
   {
     type: 'phone',
     label: 'Phone',
+    placeholder: 'Enter your phone',
     name: 'phone',
     rules: {
       required: 'true',
@@ -61,27 +63,27 @@ const config = [
   },
   {
     type: 'select',
-    label: 'Birthday',
-    name: 'birthday',
+    name: 'role',
+    label: 'Role',
     defaultValue: 'user',
     Component: RoleSingleSelect
   },
+
+  { type: 'checkbox', name: 'reminder', label: 'Reminder' },
+
   {
     type: 'multiline',
     placeholder: 'Enter your comment',
+    label: 'Comment',
     name: 'TextArea',
     inputProps: {
-      rowsMax: 10,
-      fullWidth: false,
-      variant: 'filled',
-      InputProps: { shrink: true }
+      rowsMax: 10
     }
   },
   {
     type: 'search',
     name: 'Find User',
-    variant: 'outlined',
-    Icon: <AccountBalance />
+    Icon: AccountBalance
   }
 ]
 
@@ -96,15 +98,23 @@ const App = () => {
             form={form}
             onSubmit={(data) => console.log('submit', data)}
             onSubmitFail={(error) => console.log('fail', error)}
-            size={{ size: 'medium', margin: 'dense' }}
-            inlineFields>
+            size={{ size: 'small', margin: 'normal' }}
+            variant="outlined"
+            inlineFieldsLabel>
             <FormGenerator config={config} />
+
             <FormButtons okText="accept" cancelText="cancel" />
             <button type="submit">sadfasdf</button>
+            <FormButtons
+              okText="accept"
+              cancelText="cancel"
+              visibleCancel={false}
+            />
+
           </Form>
         </Box>
 
-        <button onClick={() => form.submit()}>adfad</button>
+        <button onClick={() => form.submit()}>outside</button>
       </Box>
     </Box>
   )
@@ -118,7 +128,7 @@ const ROLE = {
 
 const ROLE_VALUES = Object.values(ROLE)
 function RoleSingleSelect(props) {
-  const { menuItemProps, onChange, value, ...rest } = props
+  const { menuItemProps, onChange, value, inputProps } = props
   const [currencySign, setCurrencySign] = useState(value)
 
   const handleSelect = (event) => {
@@ -126,16 +136,15 @@ function RoleSingleSelect(props) {
     setCurrencySign(selectedRole)
     onChange && onChange(event, ROLE[selectedRole])
   }
-
   return (
     <TextField
       select
-      label="Role"
       value={currencySign}
       style={{ minWidth: 100, textTransform: 'capitalize' }}
       defaultValue={currencySign}
+      helperText=" "
       onChange={handleSelect}
-      {...rest}>
+      {...inputProps}>
       {ROLE_VALUES.map((item) => (
         <MenuItem
           {...menuItemProps}
