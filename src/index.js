@@ -3,6 +3,7 @@ import Box from '@material-ui/core/Box'
 import { Form, FormGenerator } from './components'
 import { useForm } from 'react-hook-form'
 import { FormButtons } from './components/Lib/Button'
+import { DatePicker } from './components/Lib/DatePicker'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import './styles/bootstrap-grid-override.css'
 
@@ -43,11 +44,14 @@ const App = () => {
             layout="inline">
             <FormGenerator config={config} />
 
+            <FormButtons okText="accept" cancelText="cancel" />
+            <button type="submit">sadfasdf</button>
             <FormButtons
               okText="accept"
               cancelText="cancel"
               visibleCancel={false}
             />
+
           </Form>
         </Box>
 
