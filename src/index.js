@@ -8,6 +8,7 @@ import './styles/bootstrap-grid-override.css'
 import { useForm } from 'react-hook-form'
 import { AccountBalance } from '@material-ui/icons'
 import { FormButtons } from './components/Lib/Button'
+import { DatePicker } from './components/Lib/DatePicker'
 
 const config = [
   {
@@ -22,6 +23,9 @@ const config = [
         message: 'Enter example@senseteq.io'
       }
     },
+    inputProps: {
+      variant: 'outlined'
+    }
     defaultValue: 'examle@famil.com',
     showIfChecked: 'reminder'
   },
@@ -99,11 +103,14 @@ const App = () => {
             inlineFieldsLabel>
             <FormGenerator config={config} />
 
+            <FormButtons okText="accept" cancelText="cancel" />
+            <button type="submit">sadfasdf</button>
             <FormButtons
               okText="accept"
               cancelText="cancel"
               visibleCancel={false}
             />
+
           </Form>
         </Box>
 
