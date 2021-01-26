@@ -1,7 +1,7 @@
 import React from 'react'
 import MUIButton from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
-import { StylesProvider } from "@material-ui/core/styles";
+import { StylesProvider } from '@material-ui/core/styles'
 import { useFormContext } from 'react-hook-form'
 
 const FormButtons = (props) => {
@@ -56,7 +56,6 @@ const FormButtons = (props) => {
         </Box>
       )}
     </StylesProvider>
-
   )
 }
 FormButtons.propTypes = {}
