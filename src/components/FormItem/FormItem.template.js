@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import { Col } from '@qonsoll/react-design'
+import { Col, Row } from '@qonsoll/react-design'
 import { useFormContext } from 'react-hook-form'
 import { checkPattern } from '../../utils'
 
 const FormItem = (props) => {
   const { Component, field, formItemStyle, inlineLayout } = props
   const { setValue, formStyle } = useFormContext()
-  const { label, inline, ...restField } = field
+  const { label, inline, colProps, ...restField } = field
   checkPattern(field.rules)
   useEffect(() => {
     if (field.defaultValue) {
@@ -23,6 +23,12 @@ const FormItem = (props) => {
   } else {
     field.horizontal = false
   }
+
+  const inlineColProps = (inlineLayout && {
+    cw: 'auto',
+    display: 'flex',
+    style: { flex: 1 }
+  }) || { cw: 12 }
   return (
     <>
       {!field.native ? (
@@ -30,7 +36,7 @@ const FormItem = (props) => {
           {field.horizontal && field.type !== 'checkbox' ? (
             <InlineFormItem {...props} />
           ) : (
-            <Col cw={inlineLayout ?? 12}>
+            <Col {...inlineColProps} {...colProps}>
               <Component
                 {...restField}
                 label={label}
@@ -54,19 +60,23 @@ const FormItem = (props) => {
 const InlineFormItem = (props) => {
   const { Component, field, formItemStyle, inlineLayout } = props
   const { formStyle } = useFormContext()
-  const { label, horizontal, ...restFieldProps } = field
+  const { label, horizontal, colProps, ...restFieldProps } = field
   return (
-    <Col cw={inlineLayout ?? 12} display="flex" v="baseline">
+    <Col
+      cw={inlineLayout ? 'auto' : 12}
+      display="flex"
+      style={{ alignItems: 'baseline' }}
+      {...colProps}>
       {label && (
-        <label htmlFor={field.name}>
-          <Typography
-            component={Box}
-            pr={1}
-            className={`${inlineLayout ? 'col' : 'col-1'}`}
-            textAlign="end">
-            {label}:
-          </Typography>
-        </label>
+        <Typography
+          component={Col}
+          pr={2}
+          cw={inlineLayout ? 'auto' : [3, 1]}
+          height="100%">
+          <Row h="right">
+            <label htmlFor={field.name}>{label}:</label>
+          </Row>
+        </Typography>
       )}
 
       <Component
@@ -85,10 +95,14 @@ const InlineFormItem = (props) => {
 
 const NativeInput = (props) => {
   const { field, inlineLayout } = props
-  const { inputProps, ...restInputFields } = field
+  const { inputProps, colProps, ...restInputFields } = field
   const { register, errors } = useFormContext()
   return (
-    <Col cw={inlineLayout ?? 12} display="flex" v="center">
+    <Col
+      cw={inlineLayout ? 'auto' : 12}
+      display="flex"
+      v="center"
+      {...colProps}>
       <label htmlFor={field.name}>{field.label}</label>
       <input id={field.name} {...restInputFields} ref={register(field.rules)} />
       <p>{errors[field.name]?.message ? errors[field.name]?.message : ' '}</p>

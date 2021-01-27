@@ -25,6 +25,7 @@ const FormGenerator = (props) => {
                   />
                 )
               })}
+              FormGenerator
             </React.Fragment>
           )
         }
@@ -99,7 +100,7 @@ FormGenerator.propTypes = {
             PropTypes.instanceOf(RegExp)
           ])
         }),
-        name: PropTypes.string.isRequired,
+        name: PropTypes.string,
         label: PropTypes.string,
         placeholder: PropTypes.string,
         inline: PropTypes.bool,

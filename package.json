@@ -1,6 +1,6 @@
 {
   "name": "mui-form-generator-fractal-band-2",
-  "version": "1.0.11",
+  "version": "1.0.19",
   "description": "Form Builder for React Application with React Hook Form,Material-Ui and override Grid Bootstrap",
   "author": "GingerBoy14",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "files": [
-    "build"
+    "dist"
   ],
   "source": "src/index.js",
   "engines": {
@@ -34,6 +34,7 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.2.10",
+    "@qonsoll/react-design": "^1.0.10",
     "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-multi-entry": "^4.0.0",
@@ -50,6 +51,7 @@
     "@storybook/addon-storysource": "^6.1.14",
     "@storybook/addon-toolbars": "^6.1.14",
     "@storybook/addon-viewport": "^6.1.14",
+    "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.1.14",
     "@testing-library/jest-dom": "^5.11.9",
@@ -76,6 +78,7 @@
     "react-hook-form": "^6.14.2",
     "rollup": "^2.38.0",
     "rollup-plugin-astroturf": "^0.1.0",
+    "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
@@ -86,9 +89,5 @@
   "bugs": {
     "url": "https://github.com/GingerBoy14/mui-form-generator/issues"
   },
-  "homepage": "https://github.com/GingerBoy14/mui-form-generator#readme",
-  "dependencies": {
-    "@qonsoll/react-design": "^1.0.10",
-    "@storybook/preset-create-react-app": "^3.1.5"
-  }
+  "homepage": "https://github.com/GingerBoy14/mui-form-generator#readme"
 }

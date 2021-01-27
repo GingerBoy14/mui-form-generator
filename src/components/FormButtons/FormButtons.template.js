@@ -1,21 +1,21 @@
 import React from 'react'
-import MUIButton from '@material-ui/core/Button'
-import Box from '@material-ui/core/Box'
-import { StylesProvider } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import { Box, Col, Row } from '@qonsoll/react-design'
 import { useFormContext } from 'react-hook-form'
 
 const FormButtons = (props) => {
   const {
     cancelText,
-    okText,
+    submitText,
     visible,
-    visibleOk,
+    visibleSubmit,
     visibleCancel,
-    onClickOk,
+    onClickSubmit,
     onClickCancel,
     flexLayout,
     buttonPropsCancel,
-    buttonPropsOk
+    buttonPropsSubmit,
+    Button
   } = props
   const { formStyle } = useFormContext()
   //if u want to add styles in button u need to write
@@ -24,44 +24,73 @@ const FormButtons = (props) => {
   // styles
   // }
   return (
-    <StylesProvider injectFirst>
+    <>
       {visible && (
-        <Box
-          display="flex"
-          className={`${formStyle.layout === 'inline' ? 'col-auto' : 'col-12'}`}
-          justifyContent="flex-end"
-          {...flexLayout}>
-          {visibleCancel && (
-            <Box mx={1}>
-              <MUIButton
-                onClick={onClickCancel}
-                variant="contained"
-                {...buttonPropsCancel}>
-                {cancelText}
-              </MUIButton>
-            </Box>
-          )}
-          {visibleOk && (
-            <Box mx={1}>
-              <MUIButton
-                onClick={onClickOk}
-                variant="contained"
-                color="primary"
-                {...buttonPropsOk}
-                type="submit">
-                {okText}
-              </MUIButton>
-            </Box>
-          )}
-        </Box>
+        <Col
+          cw={formStyle.layout === 'inline' ? 'auto' : 12}
+          ml={formStyle.layout === 'inline' ? 3 : 0}>
+          <Row h="right" {...flexLayout}>
+            {visibleCancel && (
+              <Box mx={2}>
+                {Button ? (
+                  <Button
+                    onClick={onClickCancel}
+                    variant="contained"
+                    {...buttonPropsCancel}>
+                    {cancelText}
+                  </Button>
+                ) : (
+                  <button onClick={onClickCancel} {...buttonPropsCancel}>
+                    {cancelText}
+                  </button>
+                )}
+              </Box>
+            )}
+            {visibleSubmit && (
+              <Box>
+                {Button ? (
+                  <Button
+                    onClick={onClickSubmit}
+                    variant="contained"
+                    color="primary"
+                    {...buttonPropsSubmit}
+                    type="submit">
+                    {submitText}
+                  </Button>
+                ) : (
+                  <button
+                    onClick={onClickSubmit}
+                    {...buttonPropsSubmit}
+                    type="submit">
+                    {submitText}
+                  </button>
+                )}
+              </Box>
+            )}
+          </Row>
+        </Col>
       )}
-    </StylesProvider>
+    </>
   )
 }
-FormButtons.propTypes = {}
+FormButtons.propTypes = {
+  visibleSubmit: PropTypes.bool,
+  visibleCancel: PropTypes.bool,
+  visible: PropTypes.bool,
+  cancelText: PropTypes.string,
+  submitText: PropTypes.string,
+  onClickSubmit: PropTypes.func,
+  onClickCancel: PropTypes.func,
+  flexLayout: PropTypes.object,
+  buttonPropsCancel: PropTypes.object,
+  buttonPropsSubmit: PropTypes.object,
+  Button: PropTypes.elementType.isRequired
+}
 FormButtons.defaultProps = {
-  visibleOk: true,
+  visibleSubmit: true,
   visibleCancel: true,
-  visible: true
+  visible: true,
+  cancelText: 'cancel',
+  submitText: 'submit'
 }
 export default FormButtons
