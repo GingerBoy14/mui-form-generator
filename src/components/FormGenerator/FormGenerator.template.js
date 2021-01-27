@@ -8,7 +8,42 @@ import { formFieldTypes } from '../../constants'
 const { FORM_FIELD_TYPES_VALUES } = formFieldTypes
 
 const FormGenerator = (props) => {
-  const { config } = props
+  const { config, show } = props
+
+  if (show.length) {
+    return (
+      <>
+        {show.map((item) => {
+          return config.map((configItem) => {
+            if (item === configItem.name) {
+              if (configItem.inlineLayout) {
+                return (
+                  <React.Fragment key={configItem.inlineLayout[0].name}>
+                    {configItem.inlineLayout.map((layoutItem) => {
+                      return (
+                        <GenerateField
+                          formItem={layoutItem}
+                          inlineLayout
+                          key={layoutItem.name}
+                        />
+                      )
+                    })}
+                    FormGenerator
+                  </React.Fragment>
+                )
+              }
+              return (
+                <GenerateField
+                  formItem={configItem}
+                  key={`${configItem.type}_${configItem.name}`}
+                />
+              )
+            }
+          })
+        })}
+      </>
+    )
+  }
 
   return (
     <>

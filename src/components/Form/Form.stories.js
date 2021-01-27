@@ -82,7 +82,8 @@ const config = [
         value: 'phone',
         message: 'Enter correct phone number'
       }
-    }
+    },
+    horizontal: true
   }
 ]
 
@@ -92,7 +93,7 @@ const MemberAdvancedForm = (props) => {
       onSubmit={(data) => console.log('submit', data)}
       onSubmitFail={(error) => console.log('fail', error)}
       {...props}>
-      <FormGenerator config={config} />
+      <FormGenerator config={config} show={['email', 'phone']} />
       <FormButtons Button={Button} />
     </Form>
   )
