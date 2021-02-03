@@ -1,3 +1,4 @@
+import React from 'react'
 import Search from './Search.template'
 import Form from '../../Form'
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import Checkbox from './Checkbox.template'
 import Form from '../../Form'
 

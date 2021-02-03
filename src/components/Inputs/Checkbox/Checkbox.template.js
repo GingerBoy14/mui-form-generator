@@ -1,11 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FormControlLabel, Checkbox as MUICheckbox } from '@material-ui/core'
+import {
+  FormControlLabel,
+  Checkbox as MUICheckbox,
+  makeStyles
+} from '@material-ui/core'
 import { Controller, useFormContext } from 'react-hook-form'
+
+const useStyles = makeStyles({
+  root: {
+    margin: 0
+  }
+})
 
 const Checkbox = (props) => {
   const { label, name, rules, defaultValue, inputProps } = props
   const { control } = useFormContext()
+  const classes = useStyles()
   return (
     <Controller
       control={control}
@@ -14,6 +25,7 @@ const Checkbox = (props) => {
       defaultValue={defaultValue}
       render={({ value, onChange, ref }) => (
         <FormControlLabel
+          className={classes.root}
           control={
             <MUICheckbox
               color="primary"

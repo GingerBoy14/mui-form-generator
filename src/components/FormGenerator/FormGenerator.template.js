@@ -9,12 +9,19 @@ const { FORM_FIELD_TYPES_VALUES } = formFieldTypes
 
 const FormGenerator = (props) => {
   const { config, show } = props
-
-  if (show.length) {
+  const { formStyle } = useFormContext()
+  let form
+  if (formStyle.layout === 'inline') {
+    form = [{ inlineLayout: [...config] }]
+  } else {
+    form = config
+  }
+  console.log(config)
+  if (show?.length) {
     return (
       <>
         {show.map((item) => {
-          return config.map((configItem) => {
+          return form.map((configItem) => {
             if (item === configItem.name) {
               if (configItem.inlineLayout) {
                 return (
@@ -47,7 +54,7 @@ const FormGenerator = (props) => {
 
   return (
     <>
-      {config.map((formItem) => {
+      {form.map((formItem) => {
         if (formItem.inlineLayout) {
           return (
             <React.Fragment key={formItem.inlineLayout[0].name}>
@@ -60,7 +67,6 @@ const FormGenerator = (props) => {
                   />
                 )
               })}
-              FormGenerator
             </React.Fragment>
           )
         }

@@ -1,3 +1,4 @@
+import React from 'react'
 import Textarea from './Textarea.template'
 import Form from '../../Form'
 

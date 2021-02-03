@@ -36,7 +36,7 @@ const FormItem = (props) => {
           {field.horizontal && field.type !== 'checkbox' ? (
             <InlineFormItem {...props} />
           ) : (
-            <Col {...inlineColProps} {...colProps}>
+            <Col v="baseline" {...inlineColProps} {...colProps}>
               <Component
                 {...restField}
                 label={label}
@@ -63,6 +63,7 @@ const InlineFormItem = (props) => {
   const { label, horizontal, colProps, ...restFieldProps } = field
   return (
     <Col
+      v="baseline"
       cw={inlineLayout ? 'auto' : 12}
       display="flex"
       style={{ alignItems: 'baseline' }}

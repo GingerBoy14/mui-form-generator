@@ -3,7 +3,6 @@ import {
   Checkbox,
   DatePicker,
   Input,
-  Select,
   Search
 } from '../components/Inputs'
 
@@ -40,10 +39,6 @@ const FORM_FIELD_TYPES = {
   DATE: {
     Component: DatePicker,
     type: 'date'
-  },
-  SELECT: {
-    Component: Select,
-    type: 'select'
   }
 }
 

@@ -17,6 +17,7 @@ const CustomComponent = (props) => {
           value={value}
           name={name}
           {...rest}
+          error={errors[name]}
           errorText={errors[name]?.message ? errors[name].message : ' '}
         />
       )}

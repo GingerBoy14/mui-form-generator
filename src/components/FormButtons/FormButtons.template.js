@@ -28,10 +28,11 @@ const FormButtons = (props) => {
       {visible && (
         <Col
           cw={formStyle.layout === 'inline' ? 'auto' : 12}
-          ml={formStyle.layout === 'inline' ? 3 : 0}>
-          <Row h="right" {...flexLayout}>
+          ml={formStyle.layout === 'inline' ? 3 : 0}
+          v="baseline">
+          <Row h="right" mx={-2} {...flexLayout}>
             {visibleCancel && (
-              <Box mx={2}>
+              <Col cw="auto" px={2}>
                 {Button ? (
                   <Button
                     onClick={onClickCancel}
@@ -44,17 +45,17 @@ const FormButtons = (props) => {
                     {cancelText}
                   </button>
                 )}
-              </Box>
+              </Col>
             )}
             {visibleSubmit && (
-              <Box>
+              <Col cw="auto" px={2}>
                 {Button ? (
                   <Button
                     onClick={onClickSubmit}
                     variant="contained"
                     color="primary"
-                    {...buttonPropsSubmit}
-                    type="submit">
+                    type="submit"
+                    {...buttonPropsSubmit}>
                     {submitText}
                   </Button>
                 ) : (
@@ -65,7 +66,7 @@ const FormButtons = (props) => {
                     {submitText}
                   </button>
                 )}
-              </Box>
+              </Col>
             )}
           </Row>
         </Col>
@@ -84,7 +85,7 @@ FormButtons.propTypes = {
   flexLayout: PropTypes.object,
   buttonPropsCancel: PropTypes.object,
   buttonPropsSubmit: PropTypes.object,
-  Button: PropTypes.elementType.isRequired
+  Button: PropTypes.elementType
 }
 FormButtons.defaultProps = {
   visibleSubmit: true,

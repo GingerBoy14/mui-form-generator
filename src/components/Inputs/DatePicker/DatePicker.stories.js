@@ -1,3 +1,4 @@
+import React from 'react'
 import DatePicker from './DatePicker.template'
 import Form from '../../Form'
 

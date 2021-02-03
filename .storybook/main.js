@@ -12,6 +12,7 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-toolbars',
     '@storybook/addon-a11y',
-    '@storybook/addon-storysource',
+    '@storybook/preset-scss',
+    '@storybook/addon-storysource'
   ]
 }

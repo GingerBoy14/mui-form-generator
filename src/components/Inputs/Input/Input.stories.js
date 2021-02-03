@@ -1,3 +1,4 @@
+import React from 'react'
 import Input from './Input.template'
 import Form from '../../Form'
 import { Button } from '@material-ui/core'

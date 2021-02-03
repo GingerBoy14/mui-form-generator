@@ -19,6 +19,11 @@ const metadata = {
         type: 'select',
         options: ['horizontal', 'vertical', 'inline']
       }
+    },
+    form: {
+      table: {
+        disable: true
+      }
     }
   }
 }
@@ -48,61 +53,20 @@ const config = [
         value: 'text'
       }
     }
-  },
-  {
-    type: 'date',
-    label: 'Birthday',
-    name: 'birthday',
-    placeholder: 'Enter your birthday',
-    rules: {
-      required: 'true'
-    }
-  },
-  {
-    type: 'text',
-    label: 'Email',
-    name: 'email',
-    placeholder: 'Enter your email',
-    rules: {
-      required: 'true',
-      pattern: {
-        value: 'email',
-        domain: 'senseteq.io',
-        message: 'Enter example@senseteq.io'
-      }
-    }
-  },
-  {
-    type: 'phone',
-    label: 'Phone',
-    name: 'phone',
-    placeholder: 'Enter your Phone',
-    rules: {
-      pattern: {
-        value: 'phone',
-        message: 'Enter correct phone number'
-      }
-    },
-    horizontal: true
   }
 ]
 
-const MemberAdvancedForm = (props) => {
-  return (
-    <Form
-      onSubmit={(data) => console.log('submit', data)}
-      onSubmitFail={(error) => console.log('fail', error)}
-      {...props}>
-      <FormGenerator config={config} show={['email', 'phone']} />
-      <FormButtons Button={Button} />
-    </Form>
-  )
-}
-const Template = (args) => <MemberAdvancedForm {...args} />
+export const Basic = (args) => (
+  <Form
+    onSubmit={(data) => console.log('submit', data)}
+    onSubmitFail={(error) => console.log('fail', error)}
+    {...args}>
+    <FormGenerator config={config} />
+    <FormButtons Button={Button} />
+  </Form>
+)
 
-export const FormStory = Template.bind({})
-
-FormStory.args = {
+Basic.args = {
   size: { size: 'small', margin: 'dense' },
   variant: 'standard',
   layout: 'vertical'
