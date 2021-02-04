@@ -29,42 +29,43 @@ const metadata = {
 }
 export default metadata
 
-const config = [
-  {
-    type: 'text',
-    label: 'Name',
-    name: 'name',
-    placeholder: 'Enter your name',
-    rules: {
-      required: 'true',
-      pattern: {
-        value: 'text'
+export const Basic = (args) => {
+  const config = [
+    {
+      type: 'text',
+      label: 'Name',
+      name: 'name',
+      placeholder: 'Enter your name',
+      rules: {
+        required: 'true',
+        pattern: {
+          value: 'text'
+        }
+      }
+    },
+    {
+      type: 'text',
+      label: 'Surname',
+      name: 'surname',
+      placeholder: 'Enter your surname',
+      rules: {
+        required: 'true',
+        pattern: {
+          value: 'text'
+        }
       }
     }
-  },
-  {
-    type: 'text',
-    label: 'Surname',
-    name: 'surname',
-    placeholder: 'Enter your surname',
-    rules: {
-      required: 'true',
-      pattern: {
-        value: 'text'
-      }
-    }
-  }
-]
-
-export const Basic = (args) => (
-  <Form
-    onSubmit={(data) => console.log('submit', data)}
-    onSubmitFail={(error) => console.log('fail', error)}
-    {...args}>
-    <FormGenerator config={config} />
-    <FormButtons Button={Button} />
-  </Form>
-)
+  ]
+  return (
+    <Form
+      onSubmit={(data) => console.log('submit', data)}
+      onSubmitFail={(error) => console.log('fail', error)}
+      {...args}>
+      <FormGenerator config={config} />
+      <FormButtons Button={Button} />
+    </Form>
+  )
+}
 
 Basic.args = {
   size: { size: 'small', margin: 'dense' },

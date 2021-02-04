@@ -12,7 +12,7 @@ const FormButtons = (props) => {
     visibleCancel,
     onClickSubmit,
     onClickCancel,
-    flexLayout,
+    layout,
     buttonPropsCancel,
     buttonPropsSubmit,
     Button
@@ -30,7 +30,7 @@ const FormButtons = (props) => {
           cw={formStyle.layout === 'inline' ? 'auto' : 12}
           ml={formStyle.layout === 'inline' ? 3 : 0}
           v="baseline">
-          <Row h="right" mx={-2} {...flexLayout}>
+          <Row h="right" mx={-2} {...layout}>
             {visibleCancel && (
               <Col cw="auto" px={2}>
                 {Button ? (
@@ -82,7 +82,7 @@ FormButtons.propTypes = {
   submitText: PropTypes.string,
   onClickSubmit: PropTypes.func,
   onClickCancel: PropTypes.func,
-  flexLayout: PropTypes.object,
+  layout: PropTypes.object,
   buttonPropsCancel: PropTypes.object,
   buttonPropsSubmit: PropTypes.object,
   Button: PropTypes.elementType

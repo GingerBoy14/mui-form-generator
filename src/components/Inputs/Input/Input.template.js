@@ -20,7 +20,11 @@ const Input = (props) => {
 }
 
 Input.propTypes = {
-  inputProps: PropTypes.object
+  inputProps: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  rules: PropTypes.object,
+  placeholder: PropTypes.string,
+  label: PropTypes.string
 }
 Input.defaultProps = {}
 

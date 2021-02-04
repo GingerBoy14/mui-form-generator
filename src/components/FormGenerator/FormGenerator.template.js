@@ -16,7 +16,6 @@ const FormGenerator = (props) => {
   } else {
     form = config
   }
-  console.log(config)
   if (show?.length) {
     return (
       <>

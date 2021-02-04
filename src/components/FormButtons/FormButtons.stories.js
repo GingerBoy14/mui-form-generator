@@ -10,7 +10,7 @@ const metadata = {
     Button: {
       description: `Button component which you want to use.`
     },
-    flexLayout: {
+    layout: {
       description: 'All properties from @qonsoll/react-design Row component.'
     }
   }
@@ -57,22 +57,22 @@ MaterialUI.argTypes = {
   }
 }
 
-export const FlexLayout = (args) => {
+export const Layout = (args) => {
   const { h } = args
   return (
     <Form onSubmit={() => ({})}>
-      <FormButtons {...args} flexLayout={{ h }} Button={MUIButton} />
+      <FormButtons {...args} layout={{ h }} Button={MUIButton} />
     </Form>
   )
 }
 
-FlexLayout.args = {
+Layout.args = {
   h: 'right'
 }
-FlexLayout.argTypes = {
+Layout.argTypes = {
   h: {
     table: { defaultValue: { summary: 'right' } },
-    description: 'flexLayout property',
+    description: 'layout property',
     control: {
       type: 'select',
       options: ['left', 'right', 'center', 'between', 'around', 'evenly']
