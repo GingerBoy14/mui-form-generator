@@ -4,7 +4,8 @@ import { Controller, useFormContext } from 'react-hook-form'
 
 const CustomComponent = (props) => {
   const { Component, name, defaultValue, rules, ...rest } = props
-  const { control, errors } = useFormContext()
+  const { control, formState } = useFormContext()
+  const { errors } = formState
   return (
     <Controller
       control={control}
@@ -17,7 +18,7 @@ const CustomComponent = (props) => {
           value={value}
           name={name}
           {...rest}
-          error={errors[name]}
+          error={!!errors[name]}
           errorText={errors[name]?.message ? errors[name].message : ' '}
         />
       )}
@@ -25,7 +26,10 @@ const CustomComponent = (props) => {
   )
 }
 
-CustomComponent.propTypes = {}
+CustomComponent.propTypes = {
+  Component: PropTypes.elementType,
+  name: PropTypes.string.isRequired
+}
 CustomComponent.defaultProps = {}
 
 export default CustomComponent

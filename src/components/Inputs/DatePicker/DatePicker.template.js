@@ -9,13 +9,8 @@ import { Controller, useFormContext } from 'react-hook-form'
 
 const DatePicker = (props) => {
   const { defaultValue, name, rules, type, inputProps, ...rest } = props
-  const {
-    formState: { errors },
-    control,
-    setError,
-    clearErrors
-  } = useFormContext()
-
+  const { formState, control, setError, clearErrors } = useFormContext()
+  const { errors } = formState
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Controller

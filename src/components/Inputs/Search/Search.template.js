@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = (props) => {
   const { name, rules, inputProps, iconProps, Icon, ...rest } = props
-  const { register, errors } = useFormContext()
+  const { register, formState } = useFormContext()
+  const { errors } = formState
   const classes = useStyles()
   return (
     <TextField
@@ -30,6 +31,7 @@ const Search = (props) => {
             size={iconProps.size}
             visible={iconProps.visible}
             Icon={Icon}
+            position="start"
           />
         ),
         endAdornment: iconProps?.end && (
@@ -37,6 +39,7 @@ const Search = (props) => {
             size={iconProps.size}
             visible={iconProps.visible}
             Icon={Icon}
+            position="end"
           />
         )
       }}
@@ -45,11 +48,11 @@ const Search = (props) => {
 }
 //todo create folder for this component
 const CustomIcon = (props) => {
-  const { size, visible, Icon } = props
+  const { size, visible, Icon, position } = props
   return (
     <>
       {visible && (
-        <InputAdornment>
+        <InputAdornment position={position}>
           {(Icon && <Icon />) || (
             <IconSearch fontSize={size ? size : 'default'} />
           )}

@@ -19,7 +19,8 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "deploy": "gh-pages -d",
+    "build-storybook": "build-storybook",
+    "deploy": "gh-pages -d storybook-static",
     "storybook": "start-storybook -p 6006"
   },
   "peerDependencies": {
@@ -77,7 +78,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^6.14.2",
+    "react-hook-form": "^6.15.1",
     "rollup": "^2.38.0",
     "rollup-plugin-astroturf": "^0.1.0",
     "rollup-plugin-auto-external": "^2.0.0",
@@ -94,6 +95,5 @@
   "bugs": {
     "url": "https://github.com/GingerBoy14/mui-form-generator/issues"
   },
-  "homepage": "https://github.com/GingerBoy14/mui-form-generator#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/GingerBoy14/mui-form-generator#readme"
 }
