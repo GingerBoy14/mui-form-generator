@@ -6,16 +6,18 @@ import { FormProvider, useForm } from 'react-hook-form'
 const Form = (props) => {
   const {
     form,
+    formArgs,
     onSubmit,
+    defaultValues,
     onSubmitFail,
-    size,
+    size = { size: 'small', margin: 'dense' },
     variant,
     layout,
     rowStyles,
     children,
     ...rest
   } = props
-  const formMethods = useForm()
+  const formMethods = useForm({ defaultValues, ...formArgs })
   const handleSubmit = (e) => {
     if (form) return form.handleSubmit(onSubmit, onSubmitFail)(e)
     return formMethods.handleSubmit(onSubmit, onSubmitFail)(e)
@@ -55,7 +57,6 @@ Form.propTypes = {
   rowStyles: PropTypes.object
 }
 Form.defaultProps = {
-  size: { size: 'small', margin: 'dense' },
   variant: 'standard',
   layout: 'vertical'
 }

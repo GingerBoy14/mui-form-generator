@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
 import { Col, Row } from '@qonsoll/react-design'
 import { useFormContext } from 'react-hook-form'
 import { checkPattern } from '../../utils'
 
 const FormItem = (props) => {
-  const { Component, field, formItemStyle, inlineLayout } = props
+  const { Component, field, fieldProps, formItemStyle, inlineLayout } = props
   const { setValue, formStyle } = useFormContext()
   const { label, inline, colProps, ...restField } = field
   checkPattern(field.rules)
@@ -29,6 +28,7 @@ const FormItem = (props) => {
     display: 'flex',
     style: { flex: 1 }
   }) || { cw: 12 }
+
   return (
     <>
       {!field.native ? (
@@ -46,6 +46,8 @@ const FormItem = (props) => {
                   ...formStyle.size,
                   ...field.inputProps
                 }}
+                {...field.props}
+                {...fieldProps}
               />
             </Col>
           )}

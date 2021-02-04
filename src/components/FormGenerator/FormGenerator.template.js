@@ -8,19 +8,17 @@ import { formFieldTypes } from '../../constants'
 const { FORM_FIELD_TYPES_VALUES } = formFieldTypes
 
 const FormGenerator = (props) => {
-  const { config, show } = props
+  const { config, show, fieldProps } = props
   const { formStyle } = useFormContext()
-  let form
+  let formConfig = config
   if (formStyle.layout === 'inline') {
-    form = [{ inlineLayout: [...config] }]
-  } else {
-    form = config
+    formConfig = [{ inlineLayout: [...config] }]
   }
   if (show?.length) {
     return (
       <>
         {show.map((item) => {
-          return form.map((configItem) => {
+          return formConfig.map((configItem) => {
             if (item === configItem.name) {
               if (configItem.inlineLayout) {
                 return (
@@ -28,19 +26,20 @@ const FormGenerator = (props) => {
                     {configItem.inlineLayout.map((layoutItem) => {
                       return (
                         <GenerateField
+                          fieldProps={fieldProps && fieldProps[layoutItem.name]}
                           formItem={layoutItem}
                           inlineLayout
                           key={layoutItem.name}
                         />
                       )
                     })}
-                    FormGenerator
                   </React.Fragment>
                 )
               }
               return (
                 <GenerateField
                   formItem={configItem}
+                  fieldProps={fieldProps && fieldProps[configItem.name]}
                   key={`${configItem.type}_${configItem.name}`}
                 />
               )
@@ -53,13 +52,14 @@ const FormGenerator = (props) => {
 
   return (
     <>
-      {form.map((formItem) => {
+      {formConfig.map((formItem) => {
         if (formItem.inlineLayout) {
           return (
             <React.Fragment key={formItem.inlineLayout[0].name}>
               {formItem.inlineLayout.map((layoutItem) => {
                 return (
                   <GenerateField
+                    fieldProps={fieldProps && fieldProps[layoutItem.name]}
                     formItem={layoutItem}
                     inlineLayout
                     key={layoutItem.name}
@@ -72,6 +72,7 @@ const FormGenerator = (props) => {
         return (
           <GenerateField
             formItem={formItem}
+            fieldProps={fieldProps && fieldProps[formItem.name]}
             key={`${formItem.type}_${formItem.name}`}
           />
         )
@@ -80,7 +81,7 @@ const FormGenerator = (props) => {
   )
 }
 const GenerateField = (props) => {
-  const { formItem, inlineLayout } = props
+  const { formItem, inlineLayout, fieldProps } = props
   const { showIfChecked, ...formItemRest } = formItem
   const { watch } = useFormContext()
   if (formItemRest.Component) {
@@ -89,6 +90,7 @@ const GenerateField = (props) => {
         Component={CustomComponent}
         field={formItemRest}
         inlineLayout={inlineLayout}
+        fieldProps={fieldProps}
       />
     )
   }
@@ -104,6 +106,7 @@ const GenerateField = (props) => {
               field={formItemRest}
               key={formItem.name}
               inlineLayout={inlineLayout}
+              fieldProps={fieldProps}
             />
           )
       )
@@ -117,6 +120,7 @@ const GenerateField = (props) => {
           field={formItemRest}
           key={formItem.name}
           inlineLayout={inlineLayout}
+          fieldProps={fieldProps}
         />
       )
   )
