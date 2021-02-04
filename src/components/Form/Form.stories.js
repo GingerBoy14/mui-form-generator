@@ -3,7 +3,6 @@ import Form from './Form.template.js'
 import FormButtons from '../FormButtons'
 import FormGenerator from '../FormGenerator'
 import Button from '@material-ui/core/Button'
-import { useForm } from '../../hooks'
 const metadata = {
   title: 'components/Form',
   component: Form,
@@ -45,7 +44,8 @@ export const Basic = (args) => {
       rules: {
         required: 'Required',
         pattern: {
-          value: 'text'
+          value: 'word',
+          message: 'Enter only name'
         }
       }
     },
@@ -57,7 +57,8 @@ export const Basic = (args) => {
       rules: {
         required: 'Required',
         pattern: {
-          value: 'text'
+          value: 'word',
+          message: 'Enter only surname'
         }
       }
     }
@@ -98,7 +99,7 @@ export const DefaultValues = (args) => {
       rules: {
         required: 'Required',
         pattern: {
-          value: 'text'
+          value: 'word'
         }
       }
     }
@@ -132,73 +133,55 @@ DefaultValues.argTypes = {
   rowStyles: { table: { disable: true } }
 }
 
-const SubmitFromOutsideComponent = (args) => {
-  const { onSubmit, onSubmitFail } = args
-
+export const InlineFields = (args) => {
   const config = [
     {
-      type: 'text',
-      label: 'Name',
-      name: 'name',
-      placeholder: 'Enter your name',
-      rules: {
-        required: 'Required',
-        pattern: {
-          value: 'text'
+      inlineLayout: [
+        {
+          type: 'text',
+          label: 'Email',
+          name: 'email',
+          placeholder: 'Enter your email',
+          rules: {
+            required: 'Required',
+            pattern: {
+              value: 'email',
+              message: 'Enter correct email'
+            }
+          }
+        },
+        {
+          type: 'text',
+          label: 'Name',
+          name: 'name',
+          placeholder: 'Enter your name',
+          rules: {
+            required: 'Required',
+            pattern: {
+              value: 'word'
+            }
+          }
         }
-      }
+      ]
+    },
+
+    {
+      type: 'multiline',
+      label: 'Description',
+      name: 'description',
+      placeholder: 'Enter your info'
     }
   ]
-  const form = useForm()
   return (
-    <>
-      <Form form={form} onSubmit={onSubmit} onSubmitFail={onSubmitFail}>
-        <FormGenerator config={config} />
-      </Form>
-      <Button onClick={() => form.submit()}>outside</Button>
-    </>
+    <Form {...args}>
+      <FormGenerator config={config} />
+      <FormButtons />
+    </Form>
   )
 }
 
-export const SubmitFromOutside = (args) => (
-  <SubmitFromOutsideComponent {...args} />
-)
-
-SubmitFromOutside.args = {}
-SubmitFromOutside.parameters = {
-  docs: {
-    source: {
-      code: `const SubmitFromOutsideComponent = (args) => {
-  const { onSubmit, onSubmitFail, ...rest } = args
-
-  const config = [
-    {
-      type: 'text',
-      label: 'Name',
-      name: 'name',
-      placeholder: 'Enter your name',
-      rules: {
-        required: 'Required',
-        pattern: {
-          value: 'text'
-        }
-      }
-    }
-  ]
-  const form = useForm()
-  return (
-    <>
-      <Form form={form} onSubmit={onSubmit} onSubmitFail={onSubmitFail}>
-        <FormGenerator config={config} />
-      </Form>
-      <Button onClick={() => form.submit()}>outside</Button>
-    </>
-  )
-}`
-    }
-  }
-}
-SubmitFromOutside.argTypes = {
+InlineFields.args = {}
+InlineFields.argTypes = {
   size: { table: { disable: true } },
   variant: { table: { disable: true } },
   layout: { table: { disable: true } },

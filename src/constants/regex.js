@@ -3,7 +3,7 @@ import XRegExp from 'xregexp'
 /*eslint no-useless-escape: "off"*/
 
 const NUMBER_REGEX = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
-const CHECK_UNICODE = XRegExp('^\\pL+$')
+const CHECK_UNICODE_WORD = XRegExp('^\\pL+$')
 
 /*
   if you want to use this obj you need create RegExp
@@ -25,9 +25,9 @@ const REGEX_TYPE_MAP = {
     type: 'phone',
     regex: NUMBER_REGEX
   },
-  TEXT: {
-    type: 'text',
-    regex: CHECK_UNICODE
+  WORD: {
+    type: 'word',
+    regex: CHECK_UNICODE_WORD
   }
 }
 
@@ -37,7 +37,7 @@ const REGEX_TYPE_MAP_KEYS = Object.values(REGEX_TYPE_MAP)
 export {
   EMAIL_REGEX,
   NUMBER_REGEX,
-  CHECK_UNICODE,
+  CHECK_UNICODE_WORD,
   REGEX_TYPE_MAP_VALUES,
   REGEX_TYPE_MAP_KEYS
 }

@@ -1,8 +1,6 @@
 import React from 'react'
-import { Form, FormGenerator, FormButtons } from '/src/components'
+import { Form, FormGenerator } from '/src/components'
 import { Input } from '/src/components/Inputs'
-import Button from '@material-ui/core/Button'
-import { useForm } from '../../hooks'
 const metadata = {
   title: 'rules/patterns',
   component: Input,
@@ -138,7 +136,7 @@ export const Name = (args) => {
 }
 
 Name.args = {
-  value: 'text',
+  value: 'word',
   message: 'Enter your name'
 }
 Name.argTypes = {
@@ -146,7 +144,7 @@ Name.argTypes = {
     control: false,
     description: 'Unicode text without whitespaces.',
     table: {
-      defaultValue: { summary: 'text' }
+      defaultValue: { summary: 'word' }
     }
   }
 }
