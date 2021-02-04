@@ -25,14 +25,14 @@ const Search = (props) => {
       helperText={errors[name]?.message ? errors[name].message : ' '}
       inputRef={register(rules)}
       InputProps={{
-        startAdornment: iconProps.start && (
+        startAdornment: iconProps?.start && (
           <CustomIcon
             size={iconProps.size}
             visible={iconProps.visible}
             Icon={Icon}
           />
         ),
-        endAdornment: iconProps.end && (
+        endAdornment: iconProps?.end && (
           <CustomIcon
             size={iconProps.size}
             visible={iconProps.visible}
@@ -50,7 +50,9 @@ const CustomIcon = (props) => {
     <>
       {visible && (
         <InputAdornment>
-          {<Icon /> || <IconSearch fontSize={size ? size : 'default'} />}
+          {(Icon && <Icon />) || (
+            <IconSearch fontSize={size ? size : 'default'} />
+          )}
         </InputAdornment>
       )}
     </>

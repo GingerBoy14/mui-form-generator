@@ -4,6 +4,8 @@ import Form from '../../Form'
 import FormGenerator from '../../FormGenerator'
 import { Button } from '@material-ui/core'
 import { Row, Col, Container } from '@qonsoll/react-design'
+import { linkTo } from '@storybook/addon-links'
+
 const metadata = {
   title: 'components/Inputs/Input',
   component: Input,
@@ -22,6 +24,9 @@ const metadata = {
     },
     name: {
       description: 'Using to identify form item.'
+    },
+    rules: {
+      table: {}
     }
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import Search from './Search.template'
 import Form from '../../Form'
+import FormGenerator from '../../FormGenerator'
 
 const metadata = {
   title: 'components/Inputs/Search',
@@ -22,11 +23,20 @@ const metadata = {
 }
 export default metadata
 
-const Template = (args) => (
-  <Form>
-    <Search {...args} />
-  </Form>
-)
+const Template = (args) => {
+  const config = [
+    {
+      type: 'search',
+      placeholder: 'Search',
+      name: 'search'
+    }
+  ]
+  return (
+    <Form>
+      <FormGenerator config={config} />
+    </Form>
+  )
+}
 
 export const SearchStory = Template.bind({})
 
