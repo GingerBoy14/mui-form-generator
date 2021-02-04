@@ -190,3 +190,67 @@ InlineFields.argTypes = {
   onSubmitFail: { table: { disable: true } },
   rowStyles: { table: { disable: true } }
 }
+
+export const Watcher = (args) => {
+  const config = [
+    {
+      inlineLayout: [
+        {
+          type: 'text',
+          label: 'Email',
+          name: 'email',
+          placeholder: 'Enter your email',
+          rules: {
+            required: 'Required',
+            pattern: {
+              value: 'email',
+              message: 'Enter correct email'
+            }
+          }
+        },
+        {
+          type: 'text',
+          label: 'Name',
+          name: 'name',
+          placeholder: 'Enter your name',
+          rules: {
+            required: 'Required',
+            pattern: {
+              value: 'word'
+            }
+          },
+          showIfChecked: 'email'
+        }
+      ]
+    },
+    {
+      type: 'checkbox',
+      label: 'Description',
+      name: 'descriptionCheckbox'
+    },
+    {
+      type: 'multiline',
+      label: 'Description',
+      name: 'description',
+      placeholder: 'Enter your info',
+      showIfChecked: 'descriptionCheckbox'
+    }
+  ]
+  return (
+    <Form {...args}>
+      <FormGenerator config={config} />
+      <FormButtons />
+    </Form>
+  )
+}
+
+Watcher.args = {}
+Watcher.argTypes = {
+  size: { table: { disable: true } },
+  variant: { table: { disable: true } },
+  layout: { table: { disable: true } },
+  form: { table: { disable: true } },
+  onSubmit: { table: { disable: true } },
+  onSubmitFail: { table: { disable: true } },
+  rowStyles: { table: { disable: true } }
+}
