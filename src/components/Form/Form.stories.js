@@ -24,6 +24,12 @@ const metadata = {
       table: {
         disable: true
       }
+    },
+    onSubmit: {
+      action: 'submitted'
+    },
+    onSubmitFail: {
+      action: 'failed'
     }
   }
 }
@@ -37,7 +43,7 @@ export const Basic = (args) => {
       name: 'name',
       placeholder: 'Enter your name',
       rules: {
-        required: 'true',
+        required: 'Required',
         pattern: {
           value: 'text'
         }
@@ -49,7 +55,7 @@ export const Basic = (args) => {
       name: 'surname',
       placeholder: 'Enter your surname',
       rules: {
-        required: 'true',
+        required: 'Required',
         pattern: {
           value: 'text'
         }
@@ -57,10 +63,7 @@ export const Basic = (args) => {
     }
   ]
   return (
-    <Form
-      onSubmit={(data) => console.log('submit', data)}
-      onSubmitFail={(error) => console.log('fail', error)}
-      {...args}>
+    <Form {...args}>
       <FormGenerator config={config} />
       <FormButtons Button={Button} />
     </Form>
@@ -71,4 +74,136 @@ Basic.args = {
   size: { size: 'small', margin: 'dense' },
   variant: 'standard',
   layout: 'vertical'
+}
+export const DefaultValues = (args) => {
+  const config = [
+    {
+      type: 'text',
+      label: 'Email',
+      name: 'email',
+      placeholder: 'Enter your email',
+      rules: {
+        required: 'Required',
+        pattern: {
+          value: 'email',
+          message: 'Enter correct email'
+        }
+      }
+    },
+    {
+      type: 'text',
+      label: 'Name',
+      name: 'name',
+      placeholder: 'Enter your name',
+      rules: {
+        required: 'Required',
+        pattern: {
+          value: 'text'
+        }
+      }
+    }
+  ]
+  const { email, name, ...rest } = args
+  return (
+    <Form defaultValues={{ email, name }} {...rest}>
+      <FormGenerator config={config} />
+      <FormButtons />
+    </Form>
+  )
+}
+
+DefaultValues.args = {
+  email: 'example@example.com',
+  name: 'Anonymous'
+}
+DefaultValues.argTypes = {
+  email: {
+    description: 'Field name in config.'
+  },
+  name: {
+    description: 'Field name in config.'
+  },
+  size: { table: { disable: true } },
+  variant: { table: { disable: true } },
+  layout: { table: { disable: true } },
+  form: { table: { disable: true } },
+  onSubmit: { table: { disable: true } },
+  onSubmitFail: { table: { disable: true } },
+  rowStyles: { table: { disable: true } }
+}
+
+const SubmitFromOutsideComponent = (args) => {
+  const { onSubmit, onSubmitFail } = args
+
+  const config = [
+    {
+      type: 'text',
+      label: 'Name',
+      name: 'name',
+      placeholder: 'Enter your name',
+      rules: {
+        required: 'Required',
+        pattern: {
+          value: 'text'
+        }
+      }
+    }
+  ]
+  const form = useForm()
+  return (
+    <>
+      <Form form={form} onSubmit={onSubmit} onSubmitFail={onSubmitFail}>
+        <FormGenerator config={config} />
+      </Form>
+      <Button onClick={() => form.submit()}>outside</Button>
+    </>
+  )
+}
+
+export const SubmitFromOutside = (args) => (
+  <SubmitFromOutsideComponent {...args} />
+)
+
+SubmitFromOutside.args = {}
+SubmitFromOutside.parameters = {
+  docs: {
+    source: {
+      code: `const SubmitFromOutsideComponent = (args) => {
+  const { onSubmit, onSubmitFail, ...rest } = args
+
+  const config = [
+    {
+      type: 'text',
+      label: 'Name',
+      name: 'name',
+      placeholder: 'Enter your name',
+      rules: {
+        required: 'Required',
+        pattern: {
+          value: 'text'
+        }
+      }
+    }
+  ]
+  const form = useForm()
+  return (
+    <>
+      <Form form={form} onSubmit={onSubmit} onSubmitFail={onSubmitFail}>
+        <FormGenerator config={config} />
+      </Form>
+      <Button onClick={() => form.submit()}>outside</Button>
+    </>
+  )
+}`
+    }
+  }
+}
+SubmitFromOutside.argTypes = {
+  size: { table: { disable: true } },
+  variant: { table: { disable: true } },
+  layout: { table: { disable: true } },
+  form: { table: { disable: true } },
+  onSubmit: { table: { disable: true } },
+  onSubmitFail: { table: { disable: true } },
+  rowStyles: { table: { disable: true } }
 }
