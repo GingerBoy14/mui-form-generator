@@ -19,8 +19,10 @@ const Form = (props) => {
   } = props
   const formMethods = useForm({ defaultValues, ...formArgs })
   const handleSubmit = (e) => {
-    if (form) return form.handleSubmit(onSubmit, onSubmitFail)(e)
-    return formMethods.handleSubmit(onSubmit, onSubmitFail)(e)
+    if (onSubmit || onSubmitFail) {
+      if (form) return form.handleSubmit(onSubmit, onSubmitFail)(e)
+      return formMethods.handleSubmit(onSubmit, onSubmitFail)(e)
+    }
   }
 
   if (form) {
