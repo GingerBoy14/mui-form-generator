@@ -9,7 +9,7 @@ const metadata = {
 }
 export default metadata
 
-const Template = (args) => {
+export const Basic = (args) => {
   const config = [
     {
       type: 'checkbox',
@@ -23,8 +23,60 @@ const Template = (args) => {
     </Form>
   )
 }
-export const CheckboxStory = Template.bind({})
 
-CheckboxStory.args = {
-  label: 'Checkbox'
+Basic.args = {
+  label: 'Checkbox',
+  name: 'checkbox',
+  defaultValue: false
+}
+Basic.argTypes = {}
+
+export const Label = (args) => {
+  const { label, text, placement } = args
+  const config = [
+    {
+      type: 'checkbox',
+      name: 'checkbox',
+      label: label || { text, placement }
+    }
+  ]
+  return (
+    <Form>
+      <FormGenerator config={config} />
+    </Form>
+  )
+}
+
+Label.args = {
+  label: 'Checkbox',
+  defaultValue: false
+}
+Label.argTypes = {
+  name: {
+    table: {
+      disable: true
+    }
+  },
+  defaultValue: {
+    table: {
+      disable: true
+    }
+  },
+  text: {
+    control: 'text',
+    table: {
+      category: 'label'
+    }
+  },
+  placement: {
+    table: {
+      category: 'label',
+      defaultValue: { summary: 'start' }
+    },
+    defaultValue: 'start',
+    control: {
+      type: 'select',
+      options: ['bottom', 'end', 'start', 'top']
+    }
+  }
 }
