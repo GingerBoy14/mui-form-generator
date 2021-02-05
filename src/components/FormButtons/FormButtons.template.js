@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Box, Col, Row } from '@qonsoll/react-design'
+import { Col, Row } from '@qonsoll/react-design'
 import { useFormContext } from 'react-hook-form'
 
 const FormButtons = (props) => {

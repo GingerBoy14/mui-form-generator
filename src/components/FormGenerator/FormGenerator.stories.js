@@ -2,6 +2,8 @@ import Form from '../Form'
 import FormGenerator from './FormGenerator.template'
 import FormButtons from '../FormButtons'
 import React from 'react'
+import { linkTo } from '@storybook/addon-links'
+import Button from '@material-ui/core/Button'
 const metadata = {
   title: 'components/FormGenerator',
   component: FormGenerator,
@@ -32,6 +34,10 @@ const metadata = {
   }
 }
 export default metadata
+
+export const Basic = () => (
+  <Button onClick={linkTo('components/Form', 'Basic')}>Basic example</Button>
+)
 
 export const SeparateFields = (args) => {
   const { show, ...rest } = args

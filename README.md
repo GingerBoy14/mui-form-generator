@@ -1,7 +1,7 @@
 # mui-form-generator-fractal-band-2
 
 
-[![NPM](https://img.shields.io/npm/v/mui-form-generator-fractal-band.svg)](https://www.npmjs.com/package/mui-form-generator-fractal-band) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/mui-form-generator-fractal-band-2.svg)](https://www.npmjs.com/package/mui-form-generator-fractal-band-2) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
