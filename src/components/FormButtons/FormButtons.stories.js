@@ -11,7 +11,7 @@ const metadata = {
       description: `Button component which you want to use.`
     },
     layout: {
-      description: 'All properties from @qonsoll/react-design Row component.'
+      description: `All properties from @qonsoll/react-design [Row](https://qonsoll.github.io/react-design/?path=/docs/grid-row--default) component.`
     }
   }
 }
@@ -25,6 +25,7 @@ export const Native = (args) => (
 
 Native.args = {}
 Native.argTypes = {
+  layout: { control: false },
   buttonPropsCancel: {
     description: `All possible properties for cancel button tag.`
   },
@@ -41,6 +42,9 @@ export const MaterialUI = (args) => (
 
 MaterialUI.args = {}
 MaterialUI.argTypes = {
+  Button: {
+    control: false
+  },
   buttonPropsCancel: {
     description: `All possible properties for cancel button component.`,
     defaultValue: { variant: 'contained' },
@@ -71,14 +75,23 @@ Layout.args = {
 }
 Layout.argTypes = {
   h: {
-    table: { defaultValue: { summary: 'right' } },
-    description: 'layout property',
+    table: {
+      defaultValue: { summary: 'right' },
+      category: 'layout',
+      type: {
+        summary: 'layout.h: text'
+      }
+    },
     control: {
       type: 'select',
       options: ['left', 'right', 'center', 'between', 'around', 'evenly']
     }
   },
-
+  layout: {
+    table: {
+      category: 'layout'
+    }
+  },
   Button: { table: { disable: true } },
   onClickSubmit: { table: { disable: true } },
   onClickCancel: { table: { disable: true } }

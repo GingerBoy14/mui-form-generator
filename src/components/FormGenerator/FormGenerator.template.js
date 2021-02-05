@@ -157,7 +157,9 @@ FormGenerator.propTypes = {
       })
     ),
     PropTypes.array
-  ])
+  ]),
+  fieldProps: PropTypes.object,
+  show: PropTypes.arrayOf(PropTypes.string)
 }
 FormGenerator.defaultProps = {}
 
