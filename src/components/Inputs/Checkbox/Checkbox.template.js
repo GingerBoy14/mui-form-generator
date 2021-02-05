@@ -36,7 +36,7 @@ const Checkbox = (props) => {
               {...restInputProps}
             />
           }
-          label={label?.text || label}
+          label={label?.text || (typeof label === 'string' && label) || ''}
           labelPlacement={label?.placement || 'start'}
         />
       )}
