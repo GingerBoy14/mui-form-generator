@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 const Checkbox = (props) => {
   const { label, name, rules, defaultValue, inputProps } = props
   const { control } = useFormContext()
+  const { fullWidth, ...restInputProps } = inputProps
   const classes = useStyles()
   return (
     <Controller
@@ -32,7 +33,7 @@ const Checkbox = (props) => {
               checked={value}
               onChange={(e) => onChange(e.target.checked)}
               inputRef={ref}
-              {...inputProps}
+              {...restInputProps}
             />
           }
           label={label?.text || label}
