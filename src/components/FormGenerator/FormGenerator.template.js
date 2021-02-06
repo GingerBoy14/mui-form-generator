@@ -19,11 +19,11 @@ const FormGenerator = (props) => {
       <>
         {show.map((item) => {
           return formConfig.map((configItem) => {
-            if (item === configItem.name) {
-              if (configItem.inlineLayout) {
-                return (
-                  <React.Fragment key={configItem.inlineLayout[0].name}>
-                    {configItem.inlineLayout.map((layoutItem) => {
+            if (configItem.inlineLayout) {
+              return (
+                <React.Fragment key={configItem.inlineLayout[0].name}>
+                  {configItem.inlineLayout.map((layoutItem) => {
+                    if (item === layoutItem.name) {
                       return (
                         <GenerateField
                           fieldProps={fieldProps && fieldProps[layoutItem.name]}
@@ -32,10 +32,12 @@ const FormGenerator = (props) => {
                           key={layoutItem.name}
                         />
                       )
-                    })}
-                  </React.Fragment>
-                )
-              }
+                    }
+                  })}
+                </React.Fragment>
+              )
+            }
+            if (item === configItem.name) {
               return (
                 <GenerateField
                   formItem={configItem}
