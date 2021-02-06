@@ -82,8 +82,8 @@ const FormGenerator = (props) => {
 }
 const GenerateField = (props) => {
   const { formItem, inlineLayout, fieldProps } = props
-  const { showIfChecked, ...formItemRest } = formItem
-  const { watch } = useFormContext()
+  const { watch, ...formItemRest } = formItem
+  const formInstance = useFormContext()
   if (formItemRest.Component) {
     return (
       <FormItem
@@ -94,8 +94,8 @@ const GenerateField = (props) => {
       />
     )
   }
-  if (showIfChecked) {
-    const input = watch(showIfChecked)
+  if (watch) {
+    const input = formInstance.watch(watch)
     return (
       (input || null) &&
       FORM_FIELD_TYPES_VALUES.map(
@@ -153,7 +153,7 @@ FormGenerator.propTypes = {
         type: PropTypes.oneOf(FORM_FIELD_TYPES_VALUES.map(({ type }) => type)),
         inputProps: PropTypes.object,
         defaultValue: PropTypes.any,
-        showIfChecked: PropTypes.string
+        watch: PropTypes.string
       })
     ),
     PropTypes.array

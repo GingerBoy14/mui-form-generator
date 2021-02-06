@@ -249,7 +249,7 @@ export const Watcher = (args) => {
               value: 'word'
             }
           },
-          showIfChecked: 'email'
+          watch: 'email'
         }
       ]
     },
@@ -263,7 +263,7 @@ export const Watcher = (args) => {
       label: 'Description',
       name: 'description',
       placeholder: 'Enter your info',
-      showIfChecked: 'descriptionCheckbox'
+      watch: 'descriptionCheckbox'
     }
   ]
   return (

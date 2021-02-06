@@ -1,7 +1,7 @@
 {
   "name": "mui-form-generator-fractal-band-2",
-  "version": "1.0.28",
-  "description": "Form Builder for React Application with React Hook Form,Material-Ui and override Grid Bootstrap",
+  "version": "1.0.30",
+  "description": "Form Builder for React Application with React Hook Form and Material-Ui",
   "author": "GingerBoy14",
   "license": "MIT",
   "repository": {
