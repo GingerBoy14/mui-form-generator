@@ -17,7 +17,7 @@ const FormButtons = (props) => {
     buttonPropsSubmit,
     Button
   } = props
-  const { formStyle } = useFormContext()
+  const { formStyle, getValues } = useFormContext()
   //if u want to add styles in button u need to write
   //buttonProps:{
   // ...props
@@ -35,13 +35,15 @@ const FormButtons = (props) => {
               <Col cw="auto" px={2}>
                 {Button ? (
                   <Button
-                    onClick={onClickCancel}
+                    onClick={() => onClickCancel(getValues())}
                     variant="contained"
                     {...buttonPropsCancel}>
                     {cancelText}
                   </Button>
                 ) : (
-                  <button onClick={onClickCancel} {...buttonPropsCancel}>
+                  <button
+                    onClick={() => onClickCancel(getValues())}
+                    {...buttonPropsCancel}>
                     {cancelText}
                   </button>
                 )}
@@ -51,7 +53,7 @@ const FormButtons = (props) => {
               <Col cw="auto" px={2}>
                 {Button ? (
                   <Button
-                    onClick={onClickSubmit}
+                    onClick={() => onClickSubmit(getValues())}
                     variant="contained"
                     color="primary"
                     type="submit"
@@ -60,7 +62,7 @@ const FormButtons = (props) => {
                   </Button>
                 ) : (
                   <button
-                    onClick={onClickSubmit}
+                    onClick={() => onClickSubmit(getValues())}
                     {...buttonPropsSubmit}
                     type="submit">
                     {submitText}
