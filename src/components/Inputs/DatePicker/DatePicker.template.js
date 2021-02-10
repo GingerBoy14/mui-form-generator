@@ -23,10 +23,11 @@ const DatePicker = (props) => {
             {...rest}
             format="MM/dd/yyyy"
             value={value}
+            error={!!errors[name]}
             style={{ width: '100%' }}
             inputVariant={inputProps.variant}
             {...inputProps}
-            helperText={errors[name]?.message ? errors[name].message : ' '}
+            helperText={errors[name]?.message || ' '}
             onChange={(data) => {
               if (isNaN(data)) {
                 setError(name, {
