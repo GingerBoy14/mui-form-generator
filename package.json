@@ -1,6 +1,6 @@
 {
   "name": "mui-form-generator-fractal-band-2",
-  "version": "1.0.31",
+  "version": "1.0.32 ",
   "description": "Form Builder for React Application with React Hook Form and Material-Ui",
   "author": "GingerBoy14",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.2.10",
-    "@qonsoll/react-design": "^1.0.10",
+    "@qonsoll/react-design": "^1.0.12",
     "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-multi-entry": "^4.0.0",

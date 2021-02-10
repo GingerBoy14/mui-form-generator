@@ -60,7 +60,7 @@ const FormItem = (props) => {
 }
 
 const InlineFormItem = (props) => {
-  const { Component, field, formItemStyle, inlineLayout } = props
+  const { Component, field, fieldProps, formItemStyle, inlineLayout } = props
   const { formStyle } = useFormContext()
   const { label, horizontal, colProps, ...restFieldProps } = field
   return (
@@ -91,6 +91,8 @@ const InlineFormItem = (props) => {
           ...formStyle.size,
           ...restFieldProps.inputProps
         }}
+        {...field.props}
+        {...fieldProps}
       />
     </Col>
   )

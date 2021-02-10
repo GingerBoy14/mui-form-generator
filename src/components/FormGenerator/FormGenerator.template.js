@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { useFormContext } from 'react-hook-form'
 import FormItem from '../FormItem'
 import { CustomComponent } from '../HOC'
+import { Row, Col } from '@qonsoll/react-design'
 import { formFieldTypes } from '../../constants'
 
 const { FORM_FIELD_TYPES_VALUES } = formFieldTypes
 
 const FormGenerator = (props) => {
-  const { config, show, fieldProps } = props
+  const { config, show, hide, fieldProps } = props
   const { formStyle } = useFormContext()
   let formConfig = config
   if (formStyle.layout === 'inline') {
@@ -18,35 +19,42 @@ const FormGenerator = (props) => {
     return (
       <>
         {show.map((item) => {
-          return formConfig.map((configItem) => {
-            if (configItem.inlineLayout) {
-              return (
-                <React.Fragment key={configItem.inlineLayout[0].name}>
-                  {configItem.inlineLayout.map((layoutItem) => {
-                    if (item === layoutItem.name) {
-                      return (
-                        <GenerateField
-                          fieldProps={fieldProps && fieldProps[layoutItem.name]}
-                          formItem={layoutItem}
-                          inlineLayout
-                          key={layoutItem.name}
-                        />
-                      )
-                    }
-                  })}
-                </React.Fragment>
-              )
-            }
-            if (item === configItem.name) {
-              return (
-                <GenerateField
-                  formItem={configItem}
-                  fieldProps={fieldProps && fieldProps[configItem.name]}
-                  key={`${configItem.type}_${configItem.name}`}
-                />
-              )
-            }
-          })
+          return (
+            !hide?.includes(item) &&
+            formConfig.map((formItem) => {
+              if (formItem.inlineLayout) {
+                return (
+                  <Col px={0} cw={12}>
+                    <Row key={formItem.inlineLayout[0].name}>
+                      {formItem.inlineLayout.map((layoutItem) => {
+                        if (item === layoutItem.name) {
+                          return (
+                            <GenerateField
+                              fieldProps={
+                                fieldProps && fieldProps[layoutItem.name]
+                              }
+                              formItem={layoutItem}
+                              inlineLayout
+                              key={layoutItem.name}
+                            />
+                          )
+                        }
+                      })}
+                    </Row>
+                  </Col>
+                )
+              }
+              if (item === formItem.name) {
+                return (
+                  <GenerateField
+                    formItem={formItem}
+                    fieldProps={fieldProps && fieldProps[formItem.name]}
+                    key={`${formItem.type}_${formItem.name}`}
+                  />
+                )
+              }
+            })
+          )
         })}
       </>
     )
@@ -57,26 +65,32 @@ const FormGenerator = (props) => {
       {formConfig.map((formItem) => {
         if (formItem.inlineLayout) {
           return (
-            <React.Fragment key={formItem.inlineLayout[0].name}>
-              {formItem.inlineLayout.map((layoutItem) => {
-                return (
-                  <GenerateField
-                    fieldProps={fieldProps && fieldProps[layoutItem.name]}
-                    formItem={layoutItem}
-                    inlineLayout
-                    key={layoutItem.name}
-                  />
-                )
-              })}
-            </React.Fragment>
+            <Col px={0} cw={12}>
+              <Row key={formItem.inlineLayout[0].name}>
+                {formItem.inlineLayout.map((layoutItem) => {
+                  return (
+                    !hide?.includes(layoutItem.name) && (
+                      <GenerateField
+                        fieldProps={fieldProps && fieldProps[layoutItem.name]}
+                        formItem={layoutItem}
+                        inlineLayout
+                        key={layoutItem.name}
+                      />
+                    )
+                  )
+                })}
+              </Row>
+            </Col>
           )
         }
         return (
-          <GenerateField
-            formItem={formItem}
-            fieldProps={fieldProps && fieldProps[formItem.name]}
-            key={`${formItem.type}_${formItem.name}`}
-          />
+          !hide?.includes(formItem.name) && (
+            <GenerateField
+              formItem={formItem}
+              fieldProps={fieldProps && fieldProps[formItem.name]}
+              key={`${formItem.type}_${formItem.name}`}
+            />
+          )
         )
       })}
     </>
