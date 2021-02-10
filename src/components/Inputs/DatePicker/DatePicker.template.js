@@ -60,7 +60,7 @@ DatePicker.propTypes = {
   defaultValue: PropTypes.number
 }
 DatePicker.defaultProps = {
-  defaultValue: new Date('2001-11-21').getTime()
+  defaultValue: null
 }
 
 export default DatePicker
