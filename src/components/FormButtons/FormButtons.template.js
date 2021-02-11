@@ -35,14 +35,18 @@ const FormButtons = (props) => {
               <Col cw="auto" px={2}>
                 {Button ? (
                   <Button
-                    onClick={() => onClickCancel(getValues())}
+                    onClick={
+                      onClickCancel && (() => onClickCancel(getValues()))
+                    }
                     variant="contained"
                     {...buttonPropsCancel}>
                     {cancelText}
                   </Button>
                 ) : (
                   <button
-                    onClick={() => onClickCancel(getValues())}
+                    onClick={
+                      onClickCancel && (() => onClickCancel(getValues()))
+                    }
                     {...buttonPropsCancel}>
                     {cancelText}
                   </button>
@@ -53,7 +57,9 @@ const FormButtons = (props) => {
               <Col cw="auto" px={2}>
                 {Button ? (
                   <Button
-                    onClick={() => onClickSubmit(getValues())}
+                    onClick={
+                      onClickSubmit && (() => onClickSubmit(getValues()))
+                    }
                     variant="contained"
                     color="primary"
                     type="submit"
@@ -62,7 +68,9 @@ const FormButtons = (props) => {
                   </Button>
                 ) : (
                   <button
-                    onClick={() => onClickSubmit(getValues())}
+                    onClick={
+                      onClickSubmit && (() => onClickSubmit(getValues()))
+                    }
                     {...buttonPropsSubmit}
                     type="submit">
                     {submitText}
