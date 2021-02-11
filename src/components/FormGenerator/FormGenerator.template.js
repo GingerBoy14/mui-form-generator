@@ -16,18 +16,39 @@ const FormGenerator = (props) => {
     formConfig = [{ inlineLayout: [...config] }]
   }
   if (show?.length) {
+    let inlineShow = []
     return (
       <>
-        {show.map((item) => {
+        {show.map((item, index, arr) => {
+          if (inlineShow.includes(item)) {
+            return null
+          }
           return (
             !hide?.includes(item) &&
             formConfig.map((formItem) => {
-              if (formItem.inlineLayout) {
+              if (item === formItem?.name) {
                 return (
-                  <Col px={0} cw={12}>
-                    <Row key={formItem.inlineLayout[0].name}>
+                  <GenerateField
+                    formItem={formItem}
+                    fieldProps={fieldProps && fieldProps[formItem.name]}
+                    key={`${formItem.type}_${formItem.name}`}
+                  />
+                )
+              }
+              if (
+                formItem.inlineLayout &&
+                formItem.inlineLayout.some((test) => test.name === item)
+              ) {
+                return (
+                  <Col px={0} cw={12} key={formItem.inlineLayout[0].name}>
+                    <Row>
                       {formItem.inlineLayout.map((layoutItem) => {
-                        if (item === layoutItem.name) {
+                        if (
+                          (item === layoutItem.name ||
+                            arr[++index] === layoutItem.name) &&
+                          !hide?.includes(layoutItem.name)
+                        ) {
+                          inlineShow.push(layoutItem.name)
                           return (
                             <GenerateField
                               fieldProps={
@@ -42,15 +63,6 @@ const FormGenerator = (props) => {
                       })}
                     </Row>
                   </Col>
-                )
-              }
-              if (item === formItem.name) {
-                return (
-                  <GenerateField
-                    formItem={formItem}
-                    fieldProps={fieldProps && fieldProps[formItem.name]}
-                    key={`${formItem.type}_${formItem.name}`}
-                  />
                 )
               }
             })
