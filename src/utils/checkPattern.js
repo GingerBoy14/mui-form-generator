@@ -6,7 +6,10 @@ const checkPattern = (rules) => {
     REGEX_TYPE_MAP_VALUES.forEach((regex) => {
       if (regex.type === rules.pattern.value) {
         if (rules.pattern.value === 'email') {
-          if (typeof rules.pattern.domain === 'string') {
+          if (
+            rules.pattern.domain &&
+            typeof rules.pattern.domain === 'string'
+          ) {
             rules.pattern.value = getEmailRegex(rules.pattern.domain)
             delete rules.pattern.domain
           } else {
