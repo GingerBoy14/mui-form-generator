@@ -4,6 +4,7 @@ import XRegExp from 'xregexp'
 
 const NUMBER_REGEX = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
 const CHECK_UNICODE_WORD = XRegExp('^\\pL+$')
+const CHECK_UNICODE_TEXT = XRegExp('^[\\pL]+(?:\\s+[\\pL]+)*$')
 
 /*
   if you want to use this obj you need create RegExp
@@ -28,6 +29,10 @@ const REGEX_TYPE_MAP = {
   WORD: {
     type: 'word',
     regex: CHECK_UNICODE_WORD
+  },
+  TEXT: {
+    type: 'text',
+    regex: CHECK_UNICODE_TEXT
   }
 }
 
