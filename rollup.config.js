@@ -1,6 +1,6 @@
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import babel from '@rollup/plugin-babel'
-import resolve from '@rollup/plugin-node-resolve'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 import { terser } from 'rollup-plugin-terser'
@@ -49,7 +49,7 @@ export default {
     }),
     autoExternal(),
     peerDepsExternal(),
-    resolve(),
+    nodeResolve(),
     commonjs(),
     postcss(),
     terser()

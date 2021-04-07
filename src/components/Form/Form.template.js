@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Row } from '@qonsoll/react-design'
 import { FormProvider, useForm } from 'react-hook-form'
+import { ThemeProvider } from '@material-ui/core/styles'
+import { formConfigurator } from '../../utils'
 
 const Form = (props) => {
   const {
@@ -18,6 +20,7 @@ const Form = (props) => {
     ...rest
   } = props
   const formMethods = useForm({ defaultValues, ...formArgs })
+
   const handleSubmit = (e) => {
     if (onSubmit || onSubmitFail) {
       if (form) return form.handleSubmit(onSubmit, onSubmitFail)(e)
@@ -32,17 +35,19 @@ const Form = (props) => {
     size.margin = 'none'
   }
   return (
-    <FormProvider
-      {...(form || formMethods)}
-      formStyle={{
-        size,
-        variant,
-        layout
-      }}>
-      <form onSubmit={handleSubmit} {...rest}>
-        <Row {...rowStyles}>{children}</Row>
-      </form>
-    </FormProvider>
+    <ThemeProvider theme={formConfigurator.theme}>
+      <FormProvider
+        {...(form || formMethods)}
+        formStyle={{
+          size,
+          variant,
+          layout
+        }}>
+        <form onSubmit={handleSubmit} {...rest}>
+          <Row {...rowStyles}>{children}</Row>
+        </form>
+      </FormProvider>
+    </ThemeProvider>
   )
 }
 
