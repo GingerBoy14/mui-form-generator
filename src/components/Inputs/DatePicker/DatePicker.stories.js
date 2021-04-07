@@ -14,11 +14,14 @@ const Template = (args) => {
     {
       type: 'date',
       label: 'Date',
-      name: 'date'
+      name: 'date',
+      rules: {
+        required: 'Enter your date'
+      }
     }
   ]
   return (
-    <Form>
+    <Form onSubmit={(data) => console.log(data)}>
       <FormGenerator config={config} />
     </Form>
   )

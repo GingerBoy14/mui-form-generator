@@ -23,11 +23,12 @@ const FormItem = (props) => {
     field.horizontal = false
   }
 
-  const inlineColProps = (inlineLayout && {
-    cw: 'auto',
-    display: 'flex',
-    style: { flex: 1 }
-  }) || { cw: 12 }
+  const inlineColProps = (inlineLayout &&
+    !colProps && {
+      cw: 'auto',
+      display: 'flex',
+      style: { flex: 1 }
+    }) || { cw: 12 }
 
   return (
     <>

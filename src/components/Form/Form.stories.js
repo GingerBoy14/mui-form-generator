@@ -182,8 +182,37 @@ export const InlineFields = (args) => {
         },
         {
           type: 'text',
+          label: 'Phone',
+          name: 'phone',
+          placeholder: 'Enter your name',
+          rules: {
+            required: 'Required',
+            pattern: {
+              value: 'phone'
+            }
+          }
+        }
+      ]
+    },
+    {
+      inlineLayout: [
+        {
+          type: 'text',
           label: 'Name',
           name: 'name',
+          placeholder: 'Enter your email',
+          rules: {
+            required: 'Required',
+            pattern: {
+              value: 'email',
+              message: 'Enter correct email'
+            }
+          }
+        },
+        {
+          type: 'text',
+          label: 'Surname',
+          name: 'surname',
           placeholder: 'Enter your name',
           rules: {
             required: 'Required',
@@ -204,13 +233,16 @@ export const InlineFields = (args) => {
   ]
   return (
     <Form {...args}>
-      <FormGenerator config={config} />
+      <FormGenerator config={config} hide={args.hide} show={args.show} />
       <FormButtons />
     </Form>
   )
 }
 
-InlineFields.args = {}
+InlineFields.args = {
+  hide: [''],
+  show: ['description', 'email', 'phone']
+}
 InlineFields.argTypes = {
   size: { table: { disable: true } },
   variant: { table: { disable: true } },

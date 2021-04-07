@@ -77,8 +77,8 @@ const FormGenerator = (props) => {
       {formConfig.map((formItem) => {
         if (formItem.inlineLayout) {
           return (
-            <Col px={0} cw={12}>
-              <Row key={formItem.inlineLayout[0].name}>
+            <Col px={0} cw={12} key={formItem.inlineLayout[0].name}>
+              <Row>
                 {formItem.inlineLayout.map((layoutItem) => {
                   return (
                     !hide?.includes(layoutItem.name) && (
