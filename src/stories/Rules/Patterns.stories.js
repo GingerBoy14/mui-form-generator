@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormGenerator } from '/src/components'
+import { Form, FormGenerator, FormButtons } from '/src/components'
 import { Input } from '/src/components/Inputs'
 const metadata = {
   title: 'rules/patterns',
@@ -174,6 +174,65 @@ Phone.argTypes = {
     control: false,
     table: {
       defaultValue: { summary: 'phone' }
+    }
+  }
+}
+export const UnicodeWord = (args) => {
+  const { onSubmit, onSubmitFail, ...rest } = args
+  const config = [
+    {
+      type: 'text',
+      name: 'Input',
+      label: 'Word',
+      rules: { pattern: rest }
+    }
+  ]
+  return (
+    <Form onSubmit={onSubmit} onSubmitFail={onSubmitFail}>
+      <FormGenerator config={config} />
+    </Form>
+  )
+}
+
+UnicodeWord.args = {
+  value: 'word',
+  message: 'Enter word'
+}
+UnicodeWord.argTypes = {
+  value: {
+    control: false,
+    table: {
+      defaultValue: { summary: 'word' }
+    }
+  }
+}
+export const UnicodeText = (args) => {
+  const { onSubmit, onSubmitFail, ...rest } = args
+  const config = [
+    {
+      type: 'multiline',
+      name: 'Input',
+      label: 'Description',
+      rules: { pattern: rest }
+    }
+  ]
+  return (
+    <Form onSubmit={onSubmit} onSubmitFail={onSubmitFail}>
+      <FormGenerator config={config} />
+      <FormButtons />
+    </Form>
+  )
+}
+
+UnicodeText.args = {
+  value: 'text',
+  message: 'Enter description'
+}
+UnicodeText.argTypes = {
+  value: {
+    control: false,
+    table: {
+      defaultValue: { summary: 'text' }
     }
   }
 }
